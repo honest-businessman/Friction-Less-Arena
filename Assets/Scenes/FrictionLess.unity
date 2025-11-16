@@ -131,6 +131,58 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: -0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: ShapeModule.m_Position.y
+      value: -0.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: ShapeModule.m_Rotation.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: SizeBySpeedModule.separateAxes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.60524505
+      objectReference: {fileID: 0}
+    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.6415094
+      objectReference: {fileID: 0}
+    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.06354574
+      objectReference: {fileID: 0}
+    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: SizeBySpeedModule.curve.maxCurve.m_Curve.Array.data[1].time
+      value: 0.78497314
+      objectReference: {fileID: 0}
+    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: SizeBySpeedModule.curve.maxCurve.m_Curve.Array.data[1].value
+      value: 0.23754966
+      objectReference: {fileID: 0}
     - target: {fileID: 2489226470317238442, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
       propertyPath: playerController
       value: 
@@ -139,6 +191,10 @@ PrefabInstance:
       propertyPath: tankTrailShotAudio
       value: 
       objectReference: {fileID: 690717709}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: shotAudio
+      value: 
+      objectReference: {fileID: 690717711}
     - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
       propertyPath: turnSpeed
       value: 23
@@ -150,7 +206,7 @@ PrefabInstance:
     - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
       propertyPath: shellAudio
       value: 
-      objectReference: {fileID: 977146771}
+      objectReference: {fileID: 0}
     - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
       propertyPath: chargeAngle
       value: 30
@@ -233,49 +289,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 213092101655995850, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 690717709}
+    - targetCorrespondingSourceObject: {fileID: 213092101655995850, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 690717711}
   m_SourcePrefab: {fileID: 100100000, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
 --- !u!212 &304764263 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5206092232246172004, guid: 2522624f2dbfba145acc80763068e540, type: 3}
   m_PrefabInstance: {fileID: 526722177}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &443153287
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ReflectionRenderTexture
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 3413
-  m_Height: 1920
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 90
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1001 &526722177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -459,17 +481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b3e209b6db62b4488d048ea39c46ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &690717704 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-  m_PrefabInstance: {fileID: 199498342}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690717697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be818b03d2104ef4b9f24356e61236ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &690717709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,32 +519,30 @@ MonoBehaviour:
       Data3: 1313204894
       Data4: 2044759934
     Path: event:/DriftStart
---- !u!20 &792055538 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1634058560872992135, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
-  m_PrefabInstance: {fileID: 3090318916966835265}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &977146769 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8543413777007259747, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
-  m_PrefabInstance: {fileID: 1340235287}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &977146771
+--- !u!114 &690717711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 977146769}
+  m_GameObject: {fileID: 690717697}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4d041bd7ce9c554f9c17832d15d42ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 690717704}
-  shell1Event: event:/TankShot1
-  shell2Event: event:/TankShot2
-  shell3Event: event:/TankShot3
+  tankShotEvent:
+    Guid:
+      Data1: 2134504257
+      Data2: 1311381729
+      Data3: -82169414
+      Data4: 1056713124
+    Path: event:/TankShot1
+--- !u!20 &792055538 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1634058560872992135, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
+  m_PrefabInstance: {fileID: 3090318916966835265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &1269393896 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5206092232246172004, guid: 2522624f2dbfba145acc80763068e540, type: 3}
@@ -595,11 +604,9 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 7996103577312350173, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
     - {fileID: 3354472636886189838, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
+    - {fileID: 8543413777007259747, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8543413777007259747, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 977146771}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
 --- !u!212 &1408591891 stripped
 SpriteRenderer:
@@ -687,6 +694,43 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2522624f2dbfba145acc80763068e540, type: 3}
+--- !u!84 &1864500398
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ReflectionRenderTexture
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 3413
+  m_Height: 1920
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 90
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1001 &1983749787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -864,7 +908,7 @@ PrefabInstance:
     - target: {fileID: 1634058560872992135, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 443153287}
+      objectReference: {fileID: 1864500398}
     - target: {fileID: 2913776580617316615, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
       propertyPath: m_Name
       value: Game2DCamera

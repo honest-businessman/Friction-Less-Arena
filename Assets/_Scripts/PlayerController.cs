@@ -32,8 +32,9 @@ public class PlayerController : CharacterBase
     [SerializeField] private TankDriftAudio driftAudio;
 
     //FMOD
-    [SerializeField] private TankShellAudio shellAudio;
-    public TankShellAudio ShellAudio => shellAudio; // expose for FiringSystem
+    [SerializeField] private TankShotAudio shotAudio;
+    public TankShotAudio ShotAudio => shotAudio;
+
 
     [Header("Visuals")]
     // Reference to the TrackRight Animator

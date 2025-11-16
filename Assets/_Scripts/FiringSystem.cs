@@ -120,10 +120,12 @@ public class FiringSystem : MonoBehaviour
     // Fires a physical projectile that can bounce.
     void FireShell()
     {
-        // Spawn the shell prefab
-        GameObject shell = Instantiate(turretController.CurrentSettings.shellPrefab, muzzle.position, muzzle.rotation);
+        GameObject shell = Instantiate(
+            turretController.CurrentSettings.shellPrefab,
+            muzzle.position,
+            muzzle.rotation
+        );
 
-        // Initialize projectile
         shell.GetComponent<ProjectileController>().Initialize(
             turretController.CurrentSettings.shellBounces,
             turretController.CurrentSettings.shellDamage,
@@ -131,18 +133,17 @@ public class FiringSystem : MonoBehaviour
             fc.Faction
         );
 
-        // Scale & velocity
         shell.transform.localScale = new Vector2(
             turretController.CurrentSettings.shellSize,
             turretController.CurrentSettings.shellSize
         );
-        shell.GetComponent<Rigidbody2D>().linearVelocity = shell.transform.up * turretController.CurrentSettings.shellSpeed;
 
-        // Play shell sound at this shell's position
-        if (playerController != null && playerController.ShellAudio != null)
-        {
-            playerController.ShellAudio.PlayShell(shell.transform.position);
-        }
+        shell.GetComponent<Rigidbody2D>().linearVelocity =
+            shell.transform.up * turretController.CurrentSettings.shellSpeed;
+
+        // --- FMOD CALL HERE ---
+        if (playerController != null && playerController.ShotAudio != null)
+            playerController.ShotAudio.PlayShot(muzzle.position);
     }
 
 
