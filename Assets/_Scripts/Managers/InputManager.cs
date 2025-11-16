@@ -25,18 +25,16 @@ public class InputManager : MonoBehaviour
         inputSystem.Enable();
 
         // Global input (always available)
-        inputSystem.UI.Pause.performed += ctx => GameManager.Instance.PauseRecieve();
-        GameEvents.OnGamePaused += OnUIPause;
-        GameEvents.OnGameResumed += OnUIUnpause;
+        inputSystem.UI.Pause.performed += OnPause;
+        inputSystem.Player.Pause.performed += OnPause;
     }
 
     private void OnDisable()
     {
         inputSystem.Disable();
+        inputSystem.UI.Pause.performed -= OnPause;
+        inputSystem.Player.Pause.performed -= OnPause;
 
-        inputSystem.UI.Pause.performed -= ctx => GameManager.Instance.PauseRecieve();
-        GameEvents.OnGamePaused -= OnUIPause;
-        GameEvents.OnGameResumed -= OnUIUnpause;
     }
 
     public void EnablePlayerInput(PlayerController playerController)
@@ -99,8 +97,10 @@ public class InputManager : MonoBehaviour
     private void OnFire(InputAction.CallbackContext ctx) => player.Fire();
     private void OnChangeWeapon(InputAction.CallbackContext ctx) => player.turretController.ChangeTurret(ctx.ReadValue<float>());
 
-    private void OnUIPause() => inputSystem.Player.Disable();
-    private void OnUIUnpause() => inputSystem.Player.Enable();
+    private void OnPause(InputAction.CallbackContext ctx)
+    {
+        if (UIManager.Instance != null) { UIManager.Instance.HandlePause(); }
+    }
     private void OnNavigate(InputAction.CallbackContext ctx)
     {
         if(ScreenManager.Instance != null) { ScreenManager.Instance.HandleNavigate(ctx.ReadValue<Vector2>()); }

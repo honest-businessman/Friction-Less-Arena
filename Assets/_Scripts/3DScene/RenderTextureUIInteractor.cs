@@ -44,8 +44,8 @@ public class RenderTextureUIInteractor : MonoBehaviour
             if (eventSystem == null)
                 Debug.LogError("No EventSystem in scene");
         }
-        if(useClickIndicator) { clickIndicator.gameObject.SetActive(true); }
-        else { clickIndicator.gameObject.SetActive(false); }
+/*        if(useClickIndicator) { clickIndicator.gameObject.SetActive(true); }
+        else { clickIndicator.gameObject.SetActive(false); }*/
     }
 
     void Update()

@@ -109,6 +109,10 @@ public class CameraAnimationManager : MonoBehaviour
         yield return new WaitForSeconds(1f); // Short delay for scene loading
         gameCam.Priority = menuCam.Priority > settingCam.Priority ? menuCam.Priority + 1 : settingCam.Priority + 1;
     }
+    public void TransitionToMainMenu()
+    {
+        gameCam.Priority = 0;
+    }
     private void HandleSettingsOpened()
     {
         settingCam.Priority = menuCam.Priority + 1;

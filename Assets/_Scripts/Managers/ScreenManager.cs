@@ -154,11 +154,17 @@ public class ScreenManager : MonoBehaviour
         Debug.Log("Quitting Game");
         UnityEngine.Device.Application.Quit();
     }
+    public void ExitToMenu()
+    {
+        GameEvents.OnGameStarted -= listener;
+        SetScreen(ScreenType.Menu);
+        inputLocked = false;
+    }
 
     public void SettingsPressed()
     {
         if (inputLocked) return;
-        if (UIManager.Instance.IsSettingsOpen())
+        if (UIManager.Instance.currentFocus == UIManager.UIFocus.Settings)
         {
             SetScreen(ScreenType.Menu);
             MenuEvents.OnSettingsClosed?.Invoke();

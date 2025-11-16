@@ -27,8 +27,6 @@ public class UpgradeUI : MonoBehaviour
     // Called when upgrades are offered
     public void ShowUpgradeOptions(UpgradeItem[] upgradeOptions)
     {
-        GameManager.Instance.Player.GetComponent<PlayerController>().CancelDrift();
-
         if (upgradeOptions.Length != 3)
         {
             Debug.LogWarning("Upgrade options not equald to 3. This is an UpgradeUI limitation.");
@@ -37,10 +35,6 @@ public class UpgradeUI : MonoBehaviour
         }
 
         GenerateCards(upgradeOptions);
-
-        gameObject.SetActive(true);
-        InputManager.Instance.EnableUIInput();
-        Time.timeScale = 0f;
 
         // Reset selection
         selectedIndex = 0;
@@ -70,10 +64,7 @@ public class UpgradeUI : MonoBehaviour
 
         GameManager.Instance.Player.GetComponent<PlayerController>().upgradeInventory.Add(chosenUpgrade);
         chosenUpgrade.action?.Invoke();
-        UpgradeEvents.UpgradeSelected();
-        gameObject.SetActive(false);
-        InputManager.Instance.EnablePlayerInput(GameManager.Instance.Player.GetComponent<PlayerController>());
-        Time.timeScale = 1f;
+        UpgradeEvents.UpgradeSelected(chosenUpgrade);
     }
 
     // === Input Handlers ===

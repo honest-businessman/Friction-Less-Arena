@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         CleanupPlayer();
         CurrentState = GameState.MainMenu;
-        if (!isUiSceneLoaded)  // Loads UI Scene
+        if (!SceneManager.GetSceneByName(uiSceneName).isLoaded)  // Loads UI Scene
         { 
             isUiSceneLoaded = true;
             StartCoroutine(LoadSceneAsync(uiSceneName, LoadSceneMode.Additive, () =>
@@ -90,7 +90,8 @@ public class GameManager : MonoBehaviour
                 Debug.Log("UI Scene Loaded.");
                 InputManager.Instance.EnableUIInput();
             }));
-        } 
+        }
+        else { InputManager.Instance.EnableUIInput(); }
     }
 
     public IEnumerator EnterGame()
@@ -112,19 +113,22 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        if (!isUiSceneLoaded)  // Loads UI Scene
+        if (CurrentState == GameState.InGame)
         {
-            isUiSceneLoaded = true;
+            return;
+        }
+        CurrentState = GameState.InGame;
+        if (!SceneManager.GetSceneByName(uiSceneName).isLoaded)
+        {
             StartCoroutine(LoadSceneAsync(uiSceneName, LoadSceneMode.Additive, () =>
             {
                 UIManager.Instance.HideAll();
             }));
-            Debug.Log("UI Scene Loaded.");
         }
+
         else { UIManager.Instance.HideAll(); }
         Time.timeScale = 1f;
         CleanupPlayer();
-        CurrentState = GameState.InGame;
         SpawnPlayer();
         InitializeInGameManagers();
 
@@ -145,14 +149,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SpawnPlayer()
+private void SpawnPlayer()
+{
+    Player = GameObject.FindWithTag("Player");
+
+    if (Player != null)
     {
-        if (Player = GameObject.FindWithTag("Player"))
-        {
-            Debug.Log("Player already exists in the scene.");
-            
-        }
-        else
+        Debug.Log("Player already exists in the scene.");
+    }
+    else
         {
             Vector3[] spawnPositionArray = GameObject.FindGameObjectsWithTag("Spawnpoint Player")
              .Select(sp => sp.transform.position)
@@ -196,13 +201,36 @@ public class GameManager : MonoBehaviour
     private void HandlePlayerDeath()
     {
         Debug.Log("Player Died. Game Over!");
-        EndGame();
+        RestartGame();
     }
 
-    private void EndGame()
+    public void RestartGame()
     {
+        Time.timeScale = 1.0f;
         CurrentState = GameState.GameOver;
-        StartCoroutine(RestartAfterDelay(restartDelay));
+        CleanupPlayer();
+        StartCoroutine(RestartAfterDelay(0f));
+    }
+    public void EndGame()
+    {
+        Time.timeScale = 1.0f;
+        inputManager.DisableUIInput();
+        CurrentState = GameState.MainMenu;
+        UIManager.Instance.HideAll();
+        CleanupPlayer();
+        waveManager.CleanWaves();
+        if (isMainScene) 
+        {
+            SceneManager.UnloadSceneAsync(gameSceneName);
+            ScreenManager.Instance.ExitToMenu();
+            CameraAnimationManager.Instance.TransitionToMainMenu();
+            inputManager.EnableUIInput();
+        }
+        else 
+        {
+            SceneManager.LoadSceneAsync(gameSceneName, LoadSceneMode.Single);
+        }
+        
     }
 
     private IEnumerator RestartAfterDelay(float restartDelay)
@@ -212,7 +240,7 @@ public class GameManager : MonoBehaviour
         // asynchronously reload the current scene
         waveManager.CleanWaves();
         yield return SceneManager.UnloadSceneAsync(1);
-        yield return LoadSceneAsync("FrictionLess", LoadSceneMode.Additive);
+        yield return LoadSceneAsync(gameSceneName, LoadSceneMode.Additive);
 
         // Once Loaded, restart the game
         GameEvents.OnGameRestarted?.Invoke();
@@ -230,35 +258,5 @@ public class GameManager : MonoBehaviour
         }
 
         onComplete?.Invoke();
-    }
-
-    public void PauseRecieve()
-    {
-        if(CurrentState == GameState.InGame)
-        {
-            PauseGame();
-        }
-        else if(CurrentState == GameState.Paused)
-        {
-            UnpauseGame();
-        }
-    }
-    private void PauseGame()
-    {
-        if (CurrentState == GameState.InGame)
-        {
-            CurrentState = GameState.Paused;
-            Time.timeScale = 0f;
-            GameEvents.OnGamePaused.Invoke();
-        }
-    }
-    private void UnpauseGame()
-    {
-        if (CurrentState == GameState.Paused)
-        {
-            CurrentState = GameState.InGame;
-            Time.timeScale = 1f;
-            GameEvents.OnGameResumed.Invoke();
-        }
     }
 }
