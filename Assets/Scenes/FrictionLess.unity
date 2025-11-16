@@ -159,6 +159,22 @@ PrefabInstance:
       propertyPath: driftTurnSpeed
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: targetRenderer1
+      value: 
+      objectReference: {fileID: 1269393896}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: targetRenderer2
+      value: 
+      objectReference: {fileID: 304764263}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: targetRenderer3
+      value: 
+      objectReference: {fileID: 1408591891}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: targetRenderer4
+      value: 
+      objectReference: {fileID: 596579548}
     - target: {fileID: 2759497254178083693, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.012871504
@@ -218,6 +234,48 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 690717709}
   m_SourcePrefab: {fileID: 100100000, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+--- !u!212 &304764263 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5206092232246172004, guid: 2522624f2dbfba145acc80763068e540, type: 3}
+  m_PrefabInstance: {fileID: 526722177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!84 &443153287
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ReflectionRenderTexture
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 3413
+  m_Height: 1920
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 90
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1001 &526722177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -299,6 +357,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2522624f2dbfba145acc80763068e540, type: 3}
+--- !u!212 &596579548 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5206092232246172004, guid: 2522624f2dbfba145acc80763068e540, type: 3}
+  m_PrefabInstance: {fileID: 662370833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &662370833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -471,43 +534,11 @@ MonoBehaviour:
   shell1Event: event:/TankShot1
   shell2Event: event:/TankShot2
   shell3Event: event:/TankShot3
---- !u!84 &1051948317
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!212 &1269393896 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5206092232246172004, guid: 2522624f2dbfba145acc80763068e540, type: 3}
+  m_PrefabInstance: {fileID: 4639255743445334383}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ReflectionRenderTexture
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 3413
-  m_Height: 1920
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 90
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1001 &1340235287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -570,6 +601,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 977146771}
   m_SourcePrefab: {fileID: 100100000, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
+--- !u!212 &1408591891 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5206092232246172004, guid: 2522624f2dbfba145acc80763068e540, type: 3}
+  m_PrefabInstance: {fileID: 1607849421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1607849421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -828,7 +864,7 @@ PrefabInstance:
     - target: {fileID: 1634058560872992135, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1051948317}
+      objectReference: {fileID: 443153287}
     - target: {fileID: 2913776580617316615, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
       propertyPath: m_Name
       value: Game2DCamera
