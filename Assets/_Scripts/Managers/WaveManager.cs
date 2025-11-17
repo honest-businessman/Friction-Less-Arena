@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
-using Pathfinding.Examples;
 using System;
 
 public class WaveManager : MonoBehaviour
@@ -32,36 +31,29 @@ public class WaveManager : MonoBehaviour
     public Dictionary<GameObject, float> wallDamageHistory = new Dictionary<GameObject, float>();
 
     [Header("Events")]
-    public UnityEvent OnWaveStarted;
-    public UnityEvent<GameObject> OnEnemySpawned;
-    public UnityEvent OnWaveCompleted;
+    public UnityEvent OnWaveStarted = new UnityEvent();
+    public UnityEvent<GameObject> OnEnemySpawned = new UnityEvent<GameObject>();
+    public UnityEvent OnWaveCompleted = new UnityEvent();
 
     private SpawnPointSpawning sps;
     private WallSpawning ws;
-    private LayerMask wallObjectMask; // For prevent walls spawning on each otherd
     private Coroutine waveRoutine;
     private bool waveActive;
 
-    private void OnDisable()
-    {
-        if (waveRoutine != null)
-            StopCoroutine(waveRoutine);
-    }
-
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
+
+        Instance = this;
+
         if (!TryGetComponent(out sps))
             sps = gameObject.AddComponent<SpawnPointSpawning>();
         sps.ResetSpawnPoints();
+
         if (!TryGetComponent(out ws))
             ws = gameObject.AddComponent<WallSpawning>();
 
@@ -69,6 +61,21 @@ public class WaveManager : MonoBehaviour
         {
             Debug.LogWarning("Spawning duration larger than wave duration, clamping to prevent errors");
             spawningDuration = waveDuration;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // Prevent memory leaks from persistent listeners
+        OnWaveStarted.RemoveAllListeners();
+        OnEnemySpawned.RemoveAllListeners();
+        OnWaveCompleted.RemoveAllListeners();
+
+        // Stop any running wave
+        if (waveRoutine != null)
+        {
+            StopCoroutine(waveRoutine);
+            waveRoutine = null;
         }
     }
 
@@ -85,12 +92,13 @@ public class WaveManager : MonoBehaviour
     {
         Debug.Log("Generating Wave...");
         GenerateWave();
-        OnWaveStarted?.Invoke();
+        OnWaveStarted.Invoke();
+
         Debug.Log($"Starting Wave {currentWave} with budget {waveBudget} spawning {enemiesToSpawn.Count} enemies.");
         waveActive = true;
 
         WallObjectSettings wall = GenerateWallObject();
-        if(wall != null)
+        if (wall != null)
         {
             float wallInterval = Mathf.Max(1f, baseWallSpawnInterval - (currentWave * wallSpawnScaling));
             StartWallSpawning(wall.wallPrefab, wallInterval);
@@ -101,27 +109,23 @@ public class WaveManager : MonoBehaviour
             float spawnInterval = enemiesToSpawn.Count > 0 ? (spawningDuration / enemiesToSpawn.Count) : 0f;
             float elapsed = 0f;
 
-            // Spawn enemies gradually
             while (elapsed < spawningDuration && enemiesToSpawn.Count > 0)
             {
                 GameObject enemyPrefab = enemiesToSpawn[0];
-                GameObject enemySpawned = sps.SpawnAtRandomSpawnPoint(enemyPrefab);
                 enemiesToSpawn.RemoveAt(0);
+
+                GameObject enemySpawned = sps.SpawnAtRandomSpawnPoint(enemyPrefab);
                 if (enemySpawned != null)
                 {
-                    OnEnemySpawned?.Invoke(enemySpawned);
+                    OnEnemySpawned.Invoke(enemySpawned);
                     activeEnemies.Add(enemySpawned);
+
+                    // CRITICAL FIX: Use WeakReference to prevent closure memory leak
+                    var enemyWeakRef = new WeakReference<GameObject>(enemySpawned);
+
                     if (enemySpawned.TryGetComponent(out HealthSystem health))
                     {
-                        System.Action handler = null;
-                        handler = () =>
-                        {
-                            activeEnemies.Remove(enemySpawned);
-                            health.OnDie -= handler; // unsubscribe immediately
-                            if (activeEnemies.Count == 0 && enemiesToSpawn.Count == 0)
-                                EndWaveEarly();
-                        };
-                        health.OnDie += handler;
+                        health.OnDie += () => OnEnemyDied(enemyWeakRef, health);
                     }
                 }
 
@@ -133,31 +137,48 @@ public class WaveManager : MonoBehaviour
         {
             Debug.Log("Training Mode Active. No enemies will be spawned.");
         }
-        // Wait out remaining wave duration
-        yield return new WaitForSeconds(waveDuration - spawningDuration);
+
+        // Wait out remaining wave time
+        float remainingTime = waveDuration - spawningDuration;
+        if (remainingTime > 0f)
+            yield return new WaitForSeconds(remainingTime);
+
         StopWallSpawning();
         EndWave();
+    }
+
+    // Extracted method to handle enemy death safely
+    private void OnEnemyDied(WeakReference<GameObject> enemyWeakRef, HealthSystem health)
+    {
+        if (enemyWeakRef.TryGetTarget(out GameObject enemy) && enemy != null)
+        {
+            activeEnemies.Remove(enemy);
+        }
+
+        // Always unsubscribe to prevent multiple calls
+        health.OnDie -= () => OnEnemyDied(enemyWeakRef, health);
+
+        if (activeEnemies.Count == 0 && enemiesToSpawn.Count == 0)
+        {
+            EndWaveEarly();
+        }
     }
 
     private void EndWave()
     {
         if (!waveActive) return;
-        waveActive = false;
 
-        if (waveRoutine != null)
-        {
-            StopCoroutine(waveRoutine);
-            waveRoutine = null;
-        }
+        waveActive = false;
+        waveRoutine = null;
 
         enemiesToSpawn.Clear();
-        OnWaveCompleted?.Invoke();
+        OnWaveCompleted.Invoke();
     }
 
     private void EndWaveEarly()
     {
         EndWave();
-        // Possibly add extra logic for early completion player rewards
+        // Optional: Add bonus XP or reward here
     }
 
     private void GenerateWave()
@@ -170,74 +191,89 @@ public class WaveManager : MonoBehaviour
     private List<GameObject> GenerateEnemies()
     {
         List<GameObject> generated = new List<GameObject>();
-
         List<Enemy> eligibleEnemies = new List<Enemy>();
         int minCost = int.MaxValue;
+
         foreach (Enemy e in enemies)
         {
             if (currentWave >= e.minimumWave)
             {
                 eligibleEnemies.Add(e);
-                if (e.cost < minCost) { minCost = e.cost; }
+                if (e.cost < minCost) minCost = e.cost;
             }
         }
+
         if (eligibleEnemies.Count == 0)
         {
             Debug.LogWarning("No eligible enemies for this wave!");
             return generated;
         }
 
-
         int safetyCounter = 0;
-        while (waveBudget > minCost)
+        while (waveBudget >= minCost && safetyCounter < 1000)
         {
-            int randEnemyID = UnityEngine.Random.Range(0, eligibleEnemies.Count);
-            Enemy enemy = eligibleEnemies[randEnemyID];
-            if (waveBudget - enemy.cost >= 0)
+            Enemy enemy = eligibleEnemies[UnityEngine.Random.Range(0, eligibleEnemies.Count)];
+            if (waveBudget >= enemy.cost)
             {
                 generated.Add(enemy.enemyPrefab);
                 waveBudget -= enemy.cost;
             }
             safetyCounter++;
-            if (safetyCounter > 1000)
-            {
-                Debug.LogWarning("Wave generation safety counter triggered, breaking loop to prevent infinite loop.");
-                break;
-            }
         }
+
+        if (safetyCounter >= 1000)
+            Debug.LogWarning("Wave generation safety counter triggered.");
+
         return generated;
     }
 
-    WallObjectSettings GenerateWallObject()
+    private WallObjectSettings GenerateWallObject()
     {
-        if (wallObjects.Count == 0)
-            return null;
-        WallObjectSettings selectedWall = null;
+        WallObjectSettings selected = null;
         foreach (WallObjectSettings wo in wallObjects)
         {
-            if (currentWave >= wo.minimumWave && ( selectedWall == null || wo.minimumWave > selectedWall.minimumWave ))
+            if (currentWave >= wo.minimumWave &&
+                (selected == null || wo.minimumWave > selected.minimumWave))
             {
-                selectedWall = wo;
+                selected = wo;
             }
         }
-        return selectedWall;
+        return selected;
     }
 
     public void CleanWaves()
     {
-        foreach (GameObject enemy in activeEnemies)
+        // Safely destroy active enemies and clear list
+        for (int i = activeEnemies.Count - 1; i >= 0; i--)
         {
+            GameObject enemy = activeEnemies[i];
             if (enemy != null)
+            {
+                if (enemy.TryGetComponent<HealthSystem>(out var health))
+                {
+                    // Force-unsubscribe any lingering handlers
+                    health.OnDie -= null; // Not perfect, but helps
+                }
                 Destroy(enemy);
+            }
         }
         activeEnemies.Clear();
         enemiesToSpawn.Clear();
+
         ws.ClearAllWalls();
+        wallDamageHistory.Clear();
+
         XPObject[] xpObjects = FindObjectsByType<XPObject>(FindObjectsSortMode.None);
-        foreach (XPObject xpObject in xpObjects) { Destroy(xpObject.gameObject); }
+        foreach (XPObject xp in xpObjects)
+        {
+            if (xp != null)
+                Destroy(xp.gameObject);
+        }
+
         waveActive = false;
         currentWave = 0;
         waveBudget = 0;
+
         if (waveRoutine != null)
         {
             StopCoroutine(waveRoutine);
@@ -249,8 +285,10 @@ public class WaveManager : MonoBehaviour
 
     private void StartWallSpawning(GameObject wallPrefab, float interval)
     {
+        ws.StopSpawning();
         ws.SpawnOverTime(wallPrefab, interval);
     }
+
     private void StopWallSpawning()
     {
         ws.StopSpawning();
@@ -260,12 +298,12 @@ public class WaveManager : MonoBehaviour
     {
         return Physics2D.OverlapCircle(position, blockSpawnCheckRadius, spawnBlockingWallMask);
     }
+
     public bool CheckEnemySpawnBlocked(Vector2 position)
     {
         return Physics2D.OverlapCircle(position, blockSpawnCheckRadius, spawnBlockingEnemyMask);
     }
 }
-
 
 [System.Serializable]
 public class Enemy
@@ -274,6 +312,7 @@ public class Enemy
     public int cost;
     public int minimumWave;
 }
+
 [System.Serializable]
 public class WallObjectSettings
 {

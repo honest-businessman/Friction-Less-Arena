@@ -9,7 +9,6 @@ public class WallSpawning : MonoBehaviour
     private Tilemap tilemap;
     private List<Vector3Int> allTiles = new List<Vector3Int>();
     private HashSet<Vector3Int> usedTiles = new HashSet<Vector3Int>();
-    private bool spawningFlag = false;
 
     public void Setup()
     {
@@ -21,81 +20,105 @@ public class WallSpawning : MonoBehaviour
         }
 
         tilemap = wallGen.GetComponent<Tilemap>();
+        allTiles.Clear();
 
-        // Store all valid tile positions
         foreach (Vector3Int pos in tilemap.cellBounds.allPositionsWithin)
         {
             if (tilemap.HasTile(pos))
                 allTiles.Add(pos);
         }
+
+        if (allTiles.Count == 0)
+            Debug.LogWarning("WallSpawning: No tiles found in tilemap!");
     }
 
     public void SpawnOverTime(GameObject wallPrefab, float interval)
     {
+        // Always stop previous first
         if (spawnCoroutine != null)
             StopCoroutine(spawnCoroutine);
-        spawnCoroutine = StartCoroutine(SpawnOverTimeCoroutine(wallPrefab, interval));
+
+        spawnCoroutine = StartCoroutine(SpawnRoutine(wallPrefab, interval));
     }
 
-    private IEnumerator SpawnOverTimeCoroutine(GameObject wallPrefab, float interval)
+    private IEnumerator SpawnRoutine(GameObject wallPrefab, float interval)
     {
-        spawningFlag = true;
+        WaitForSeconds delay = new WaitForSeconds(interval);
 
-        while (spawningFlag)
+        while (true) // Simple infinite loop — we control stopping from outside
         {
-            bool trySpawn = true;
-            int safetyCounter = 0;
-
-            while (trySpawn && safetyCounter < 20) // avoid infinite loop
+            if (allTiles.Count == 0 || usedTiles.Count >= allTiles.Count)
             {
-                safetyCounter++;
-                trySpawn = false;
+                yield return delay;
+                continue;
+            }
 
+            int attempts = 0;
+            bool spawnedThisTick = false;
+
+            while (attempts < 20 && !spawnedThisTick)
+            {
+                attempts++;
                 Vector3Int startTile = allTiles[Random.Range(0, allTiles.Count)];
-                if (startTile == Vector3Int.zero)
-                    yield break;
 
                 if (usedTiles.Contains(startTile))
                     continue;
 
                 List<Vector3Int> connectedTiles = GetConnectedTiles(startTile);
 
+                bool blocked = false;
+                List<Vector3Int> tilesToUse = new List<Vector3Int>();
+
                 foreach (var tilePos in connectedTiles)
                 {
-                    // skip if already used
                     if (usedTiles.Contains(tilePos))
-                        continue;
-
-                    Vector3 worldPos = tilemap.CellToWorld(tilePos) + tilemap.tileAnchor;
-
-                    if (WaveManager.Instance != null && WaveManager.Instance.CheckWallSpawnBlocked(worldPos))
                     {
-                        trySpawn = true;
+                        blocked = true;
                         break;
                     }
 
-                    usedTiles.Add(tilePos);
+                    Vector3 worldPos = tilemap.CellToWorld(tilePos) + tilemap.tileAnchor;
+                    if (WaveManager.Instance != null && WaveManager.Instance.CheckWallSpawnBlocked(worldPos))
+                    {
+                        blocked = true;
+                        break;
+                    }
 
+                    tilesToUse.Add(tilePos);
+                }
+
+                if (blocked)
+                    continue;
+
+                // SUCCESS — spawn the wall segment
+                foreach (var tilePos in tilesToUse)
+                {
+                    usedTiles.Add(tilePos);
+                    Vector3 worldPos = tilemap.CellToWorld(tilePos) + tilemap.tileAnchor;
                     GameObject wallObject = Instantiate(wallPrefab, worldPos, Quaternion.identity);
                     wallObject.transform.SetParent(transform);
 
-                    // give wall reference to spawner and tile position
-                    WallObject wallScript = wallObject.GetComponent<WallObject>();
-                    if (wallScript != null)
+                    if (wallObject.TryGetComponent<WallObject>(out var wallScript))
                     {
                         wallScript.Initialize(this, tilePos);
                     }
                 }
+
+                spawnedThisTick = true;
             }
+
+            // CRITICAL: Yield here every spawn cycle
+            yield return delay;
         }
-        yield return new WaitForSeconds(interval);
     }
 
     public void StopSpawning()
     {
-        spawningFlag = false;
         if (spawnCoroutine != null)
+        {
             StopCoroutine(spawnCoroutine);
+            spawnCoroutine = null;
+        }
     }
 
     public void ClearAllWalls()
@@ -104,16 +127,13 @@ public class WallSpawning : MonoBehaviour
 
         foreach (Transform child in transform)
         {
-            if (child.GetComponent<WallObject>() != null)
-            {
+            if (child != null && child.GetComponent<WallObject>() != null)
                 Destroy(child.gameObject);
-            }
         }
 
         usedTiles.Clear();
     }
 
-    // Flood fill to get all connected tiles in all directions
     private List<Vector3Int> GetConnectedTiles(Vector3Int start)
     {
         List<Vector3Int> connected = new List<Vector3Int>();
@@ -123,13 +143,7 @@ public class WallSpawning : MonoBehaviour
         toCheck.Enqueue(start);
         visited.Add(start);
 
-        Vector3Int[] directions = new Vector3Int[]
-        {
-            Vector3Int.up,
-            Vector3Int.down,
-            Vector3Int.left,
-            Vector3Int.right
-        };
+        Vector3Int[] directions = { Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right };
 
         while (toCheck.Count > 0)
         {
@@ -152,7 +166,6 @@ public class WallSpawning : MonoBehaviour
 
     public void FreeTile(Vector3Int tilePos)
     {
-        if (usedTiles.Contains(tilePos))
-            usedTiles.Remove(tilePos);
+        usedTiles.Remove(tilePos);
     }
 }
