@@ -34,6 +34,21 @@ public class PlayerController : CharacterBase
     //FMOD
     [SerializeField] private TankShotAudio shotAudio;
     public TankShotAudio ShotAudio => shotAudio;
+    [Header("Drive Audio")]
+    [SerializeField] private FMODUnity.EventReference fullDriveLoopEvent;
+    private FMOD.Studio.EventInstance fullDriveLoopInstance;
+    private bool isDriveLoopPlaying = false;
+    [Header("Drift Audio")]
+    [SerializeField] private FMODUnity.EventReference driftLoopEvent;
+    private FMOD.Studio.EventInstance driftLoopInstance;
+    private bool isDriftLoopPlaying = false;
+    [Header("XP Audio")]
+    [SerializeField] private FMODUnity.EventReference xpPickupEvent;
+    public FMODUnity.EventReference XPPickupEvent => xpPickupEvent;
+
+
+
+
 
 
     [Header("Visuals")]
@@ -121,7 +136,23 @@ public class PlayerController : CharacterBase
     private void OnDisable()
     {
         PlayerEvents.OnPlayerFireCharged -= DelayChargingDrive;
+
+        if (driftLoopInstance.isValid())
+        {
+            driftLoopInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            driftLoopInstance.release();
+            isDriftLoopPlaying = false;
+        }
+
+        if (fullDriveLoopInstance.isValid())
+        {
+            fullDriveLoopInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            fullDriveLoopInstance.release();
+            isDriveLoopPlaying = false;
+        }
     }
+
+
 
     public void Move(Vector2 moveVector)
     {
@@ -129,13 +160,31 @@ public class PlayerController : CharacterBase
 
     }
 
-    // Modified to include trail control
     public void Drift(bool isPressed)
     {
-        if (isPressed && !driftPressed && rb.linearVelocity.magnitude > 0.1f) // only play if moving
+        if (isPressed && !driftPressed && rb.linearVelocity.magnitude > 0.1f)
         {
             if (driftAudio != null)
                 driftAudio.PlayDriftStart(transform.position);
+
+            // Start FMOD drift loop
+            if (!isDriftLoopPlaying)
+            {
+                driftLoopInstance = FMODUnity.RuntimeManager.CreateInstance(driftLoopEvent);
+                driftLoopInstance.start();
+                isDriftLoopPlaying = true;
+            }
+        }
+
+        // Stop FMOD drift loop when drift ends
+        if (!isPressed && isDriftLoopPlaying)
+        {
+            if (driftLoopInstance.isValid())
+            {
+                driftLoopInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                driftLoopInstance.release();
+                isDriftLoopPlaying = false;
+            }
         }
 
         driftPressed = isPressed;
@@ -226,13 +275,31 @@ public class PlayerController : CharacterBase
         {
             fullChargeParticles.Play();
             particlesPlaying = true;
+
+            // Start FMOD loop
+            if (!isDriveLoopPlaying)
+            {
+                fullDriveLoopInstance = FMODUnity.RuntimeManager.CreateInstance(fullDriveLoopEvent);
+                fullDriveLoopInstance.start();
+                isDriveLoopPlaying = true;
+            }
         }
         else if (DriveCharge < 100f && particlesPlaying)
         {
-            fullChargeParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); // instantly clear particles
+            fullChargeParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             particlesPlaying = false;
+
+            // Stop FMOD loop
+            if (isDriveLoopPlaying && fullDriveLoopInstance.isValid())
+            {
+                fullDriveLoopInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                fullDriveLoopInstance.release();
+                isDriveLoopPlaying = false;
+            }
         }
     }
+
+
 
 
     private void PlayerRotate()

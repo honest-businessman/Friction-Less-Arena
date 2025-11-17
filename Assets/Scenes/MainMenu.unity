@@ -1817,6 +1817,7 @@ MonoBehaviour:
       Data3: -1190686808
       Data4: 1969691072
     Path: event:/Battle music
+  fadeDuration: 1
 --- !u!1 &1409766432
 GameObject:
   m_ObjectHideFlags: 0
@@ -2383,6 +2384,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 952739754}
@@ -2391,7 +2396,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1389098752}
     - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1389098752}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
@@ -2403,6 +2416,10 @@ PrefabInstance:
       value: PlayGameMusic
       objectReference: {fileID: 0}
     - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: PlayMenuMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: ScreenManager, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -2411,7 +2428,15 @@ PrefabInstance:
       value: MenuMusicController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: MenuMusicController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []

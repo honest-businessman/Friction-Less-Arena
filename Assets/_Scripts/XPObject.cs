@@ -11,6 +11,8 @@ public class XPObject : MonoBehaviour
     [Header("Sprite Settings")]
     [SerializeField] private float baseSize = 0.04f;
     [SerializeField] private float sizeIncreasePerValue = 0.04f;
+    [Header("Audio")]
+    [SerializeField] private FMODUnity.EventReference xpPickupEvent;
 
     private bool isAttracting = false;
     
@@ -55,14 +57,32 @@ public class XPObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             LevelSystem levelSystem = other.GetComponent<LevelSystem>();
             if (levelSystem != null)
             {
                 levelSystem.AddXP(xpValue);
             }
+
+            // Play XP pickup sound via PlayerController
+            PlayerController player = other.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                FMODUnity.EventReference xpEvent = player.XPPickupEvent;
+
+                if (!string.IsNullOrEmpty(xpEvent.Guid.ToString())) // simple check
+                {
+                    FMOD.Studio.EventInstance xpInstance = FMODUnity.RuntimeManager.CreateInstance(xpEvent);
+                    xpInstance.start();
+                    xpInstance.release();
+                }
+            }
+
             Destroy(gameObject);
         }
     }
+
+
+
 }

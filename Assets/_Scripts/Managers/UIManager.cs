@@ -168,6 +168,8 @@ public class UIManager : MonoBehaviour
         HideAll();
         mainMenuPanel.SetActive(true);
         currentFocus = UIFocus.MainMenu;
+
+        MenuMusicController.Instance.ReturnToMainMenu();
     }
 
     public void ShowSettingsMenu()
