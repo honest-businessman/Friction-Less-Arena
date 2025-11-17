@@ -14,7 +14,7 @@ public class ProjectileDamageTrigger : MonoBehaviour
     {
         if (parentProjectile != null)
         {
-            parentProjectile.HandleTrigger(other);
+            if(!other.isTrigger) parentProjectile.HandleTrigger(other);
         }
     }
 }

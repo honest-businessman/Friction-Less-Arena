@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ec6349611d104b42a2fe08a6ec6cd23, type: 3}
-  m_Name: ShellSpeedUncommonUpgradeItem
+  m_Name: ShellSpeedRareUpgradeItem
   m_EditorClassIdentifier: 
-  itemName: Barrel Accelerator
+  itemName: Shell Drag Reductions
   icon: {fileID: -2413806693520163455, guid: b6d904533e634b443930de9efed9b70c, type: 3}
-  description: Slightly increases the turret's shell speed.
+  description: Increases the turret's shell speed.
   upgradeType: 1
-  rarity: 0
-  value: 1.1
+  rarity: 1
+  value: 1.2
   valueScaling: 2

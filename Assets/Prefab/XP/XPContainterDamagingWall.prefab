@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4557683677722056584}
   - component: {fileID: 5878789037923216627}
   m_Layer: 0
-  m_Name: XPContainterDestructibleWall
+  m_Name: XPContainterDamagingWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xpPrefab: {fileID: 8686789009618999797, guid: 5b8b31ba75080fa4a80a53b56e423667, type: 3}
-  minCount: 0
+  minCount: 1
   maxCount: 1
   minValue: 1
   maxValue: 1

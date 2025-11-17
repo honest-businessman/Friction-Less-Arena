@@ -33,6 +33,7 @@ public class MapObjectPathing : MonoBehaviour
 
     private void ResetPenalty(GraphUpdateObject guo)
     {
+        if (penaltyGuo != null) return;
         GraphUpdateObject newGuo = new GraphUpdateObject(guo.bounds); // Must create new GraphUpdateObject, cannot reuse old one.
         newGuo.updatePhysics = true;
         newGuo.resetPenaltyOnPhysics = false;
