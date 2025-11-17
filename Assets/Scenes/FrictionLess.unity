@@ -131,89 +131,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: ShapeModule.m_Scale.x
-      value: 0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: ShapeModule.m_Scale.y
-      value: -0.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: ShapeModule.m_Position.y
-      value: -0.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: ShapeModule.m_Rotation.y
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: InitialModule.maxNumParticles
-      value: 42
-      objectReference: {fileID: 0}
-    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: SizeBySpeedModule.separateAxes
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 8.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.60524505
-      objectReference: {fileID: 0}
-    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.6415094
-      objectReference: {fileID: 0}
-    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.06354574
-      objectReference: {fileID: 0}
-    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: SizeBySpeedModule.curve.maxCurve.m_Curve.Array.data[1].time
-      value: 0.78497314
-      objectReference: {fileID: 0}
-    - target: {fileID: 236354953109614970, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: SizeBySpeedModule.curve.maxCurve.m_Curve.Array.data[1].value
-      value: 0.23754966
-      objectReference: {fileID: 0}
-    - target: {fileID: 2489226470317238442, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: playerController
-      value: 
-      objectReference: {fileID: 690717703}
-    - target: {fileID: 2489226470317238442, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: tankTrailShotAudio
-      value: 
-      objectReference: {fileID: 690717709}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: shotAudio
-      value: 
-      objectReference: {fileID: 690717711}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: turnSpeed
-      value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: driftAudio
-      value: 
-      objectReference: {fileID: 690717710}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: shellAudio
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: chargeAngle
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: driftTurnSpeed
-      value: 18
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: DeathEvent.Path
+      value: event:/ExplosionDeath
       objectReference: {fileID: 0}
     - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
       propertyPath: targetRenderer1
@@ -231,6 +151,82 @@ PrefabInstance:
       propertyPath: targetRenderer4
       value: 
       objectReference: {fileID: 596579548}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: DamageEvent.Path
+      value: event:/TankHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: EnemyDeathEvent.Path
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: DeathEvent.Guid.Data1
+      value: -419666244
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: DeathEvent.Guid.Data2
+      value: 1292553975
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: DeathEvent.Guid.Data3
+      value: -760632941
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: DeathEvent.Guid.Data4
+      value: -74563579
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: PlayerDeathEvent.Path
+      value: event:/ExplosionDeath
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: DamageEvent.Guid.Data1
+      value: -1329220135
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: DamageEvent.Guid.Data2
+      value: 1302257472
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: DamageEvent.Guid.Data3
+      value: -2092356450
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: DamageEvent.Guid.Data4
+      value: 591114845
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: EnemyDeathEvent.Guid.Data1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: EnemyDeathEvent.Guid.Data2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: EnemyDeathEvent.Guid.Data3
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: EnemyDeathEvent.Guid.Data4
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: PlayerDeathEvent.Guid.Data1
+      value: -419666244
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: PlayerDeathEvent.Guid.Data2
+      value: 1292553975
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: PlayerDeathEvent.Guid.Data3
+      value: -760632941
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: PlayerDeathEvent.Guid.Data4
+      value: -74563579
+      objectReference: {fileID: 0}
     - target: {fileID: 2759497254178083693, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.012871504
@@ -271,27 +267,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7007301603030296698, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: xpCostScaling
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7007301603030296698, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: intialXpToLevelUp
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 213092101655995850, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 690717710}
-    - targetCorrespondingSourceObject: {fileID: 213092101655995850, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 690717709}
-    - targetCorrespondingSourceObject: {fileID: 213092101655995850, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 690717711}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
 --- !u!212 &304764263 stripped
 SpriteRenderer:
@@ -465,84 +444,84 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2522624f2dbfba145acc80763068e540, type: 3}
---- !u!1 &690717697 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 213092101655995850, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-  m_PrefabInstance: {fileID: 199498342}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &690717703 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-  m_PrefabInstance: {fileID: 199498342}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690717697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34b3e209b6db62b4488d048ea39c46ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &690717709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690717697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea975229be2e3e649875ee64eb256580, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tankTrailShotEvent:
-    Guid:
-      Data1: -1507408086
-      Data2: 1169714321
-      Data3: 1309568129
-      Data4: -906855665
-    Path: event:/ChargedShot
---- !u!114 &690717710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690717697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa1f3512548c79d4bbb817a8f2bc2bb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  driftStartEvent:
-    Guid:
-      Data1: -1169687711
-      Data2: 1163617329
-      Data3: 1313204894
-      Data4: 2044759934
-    Path: event:/DriftStart
---- !u!114 &690717711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690717697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4d041bd7ce9c554f9c17832d15d42ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tankShotEvent:
-    Guid:
-      Data1: 2134504257
-      Data2: 1311381729
-      Data3: -82169414
-      Data4: 1056713124
-    Path: event:/TankShot1
 --- !u!20 &792055538 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1634058560872992135, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
   m_PrefabInstance: {fileID: 3090318916966835265}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1013465100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2913776580617316615, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
+  m_PrefabInstance: {fileID: 3090318916966835265}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1013465102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013465100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 931133800
+      Data2: 1208066204
+      Data3: -1190686808
+      Data4: 1969691072
+    Path: event:/Battle music
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!84 &1137094681
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ReflectionRenderTexture
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 3413
+  m_Height: 1920
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 90
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!212 &1269393896 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5206092232246172004, guid: 2522624f2dbfba145acc80763068e540, type: 3}
@@ -694,43 +673,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2522624f2dbfba145acc80763068e540, type: 3}
---- !u!84 &1864500398
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ReflectionRenderTexture
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 3413
-  m_Height: 1920
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 90
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1001 &1983749787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -908,7 +850,7 @@ PrefabInstance:
     - target: {fileID: 1634058560872992135, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1864500398}
+      objectReference: {fileID: 1137094681}
     - target: {fileID: 2913776580617316615, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
       propertyPath: m_Name
       value: Game2DCamera
@@ -920,7 +862,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2913776580617316615, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1013465102}
   m_SourcePrefab: {fileID: 100100000, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
 --- !u!1001 &4639255743445334383
 PrefabInstance:

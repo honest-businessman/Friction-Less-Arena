@@ -16,9 +16,12 @@ public class HealthSystem : MonoBehaviour
     public UnityEvent OnRegenStart;
     public UnityEvent OnRegenFinish;
 
-    [Header("Audio / Effects")]
-    [SerializeField] AudioClip DamageSound;
-    [SerializeField] AudioClip DeathSound;
+    [Header("FMOD Events")]
+    [SerializeField] private FMODUnity.EventReference DamageEvent;         // Player takes damage
+    [SerializeField] private FMODUnity.EventReference PlayerDeathEvent;   // Player dies
+    [SerializeField] private FMODUnity.EventReference EnemyDeathEvent;    // Enemy dies (NEW)
+
+    [Header("Death VFX")]
     [SerializeField] GameObject DeathVFX;
 
     [Header("XP Settings")]
@@ -35,19 +38,10 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private Sprite spriteAt2HP;
     [SerializeField] private Sprite spriteAt1HP;
 
-    private AudioSource audioSource;
     private Coroutine regenCoroutine;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
-        audioSource.playOnAwake = false;
-        audioSource.spatialBlend = 1f;
-
         UpdateSprite();
     }
 
@@ -76,12 +70,10 @@ public class HealthSystem : MonoBehaviour
                     OnRegenStart?.Invoke();
                 }
 
-                if (gameObject.CompareTag("Player"))
+                if (CompareTag("Player"))
                 {
-                    if (DamageSound != null)
-                    {
-                        audioSource.PlayOneShot(DamageSound);
-                    }
+                    // FMOD one-shot for taking damage
+                    FMODUnity.RuntimeManager.PlayOneShot(DamageEvent, transform.position);
 
                     GlitchFlash glitch = GetComponent<GlitchFlash>();
                     if (glitch != null)
@@ -111,13 +103,17 @@ public class HealthSystem : MonoBehaviour
             Destroy(explosion, 2f);
         }
 
-        AudioClip clipToPlay = DeathSound;
-
-        if (clipToPlay != null)
+        // 🎵 FMOD Death Logic
+        if (CompareTag("Player"))
         {
-            AudioSource.PlayClipAtPoint(clipToPlay, transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot(PlayerDeathEvent, transform.position);
+        }
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(EnemyDeathEvent, transform.position);
         }
 
+        // XP drop logic (only for enemies)
         if (!CompareTag("Player"))
         {
             if (xpContainer != null)
@@ -149,7 +145,6 @@ public class HealthSystem : MonoBehaviour
         OnDie?.Invoke();
     }
 
-    // 🔵 Handles sprite swapping logic for all target objects
     private void UpdateSprite()
     {
         Sprite newSprite = null;
@@ -161,7 +156,6 @@ public class HealthSystem : MonoBehaviour
         else if (health == 1)
             newSprite = spriteAt1HP;
 
-        // Apply to all assigned renderers
         ApplySprite(targetRenderer1, newSprite);
         ApplySprite(targetRenderer2, newSprite);
         ApplySprite(targetRenderer3, newSprite);

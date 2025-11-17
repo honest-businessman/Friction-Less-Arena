@@ -1786,6 +1786,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1389098750 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8543413777007259747, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
+  m_PrefabInstance: {fileID: 1923512554}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1389098752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389098750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7060d84fbc9bf684994f354b90fb51a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuMusic:
+    Guid:
+      Data1: 2012481963
+      Data2: 1187754470
+      Data3: -673129542
+      Data4: -1890948042
+    Path: event:/Main menu music
+  GameMusic:
+    Guid:
+      Data1: 931133800
+      Data2: 1208066204
+      Data3: -1190686808
+      Data4: 1969691072
+    Path: event:/Battle music
 --- !u!1 &1409766432
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,7 +2102,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8543413777007259747, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1389098752}
   m_SourcePrefab: {fileID: 100100000, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
 --- !u!1001 &304953295077170197
 PrefabInstance:
@@ -2257,9 +2291,45 @@ PrefabInstance:
       value: StartButton
       objectReference: {fileID: 0}
     - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 952739754}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1389098752}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayGameMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ScreenManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MenuMusicController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
