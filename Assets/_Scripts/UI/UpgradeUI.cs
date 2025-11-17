@@ -2,20 +2,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
+using FMODUnity;
 
 public class UpgradeUI : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] GameObject upgradeCardPrefab;
-    [SerializeField] HorizontalLayoutGroup upgradeCardContainer;
+    [SerializeField] private GameObject upgradeCardPrefab;
+    [SerializeField] private HorizontalLayoutGroup upgradeCardContainer;
 
     [Header("Navigation Settings")]
     [SerializeField] private float navigateThreshold = 0.5f;
     [SerializeField] private float deadzone = 0.2f;
     [SerializeField] private bool inputLocked = false;
 
+    [Header("FMOD Events")]
+    [SerializeField] private EventReference hoverSound;
+    [SerializeField] private EventReference selectSound;
+
     private int selectedIndex = 0;
     private bool navigateHeld = false;
+    private int lastSelectedIndex = -1;
 
     private List<UpgradeCard> upgradeCards = new List<UpgradeCard>();
 
@@ -29,7 +35,7 @@ public class UpgradeUI : MonoBehaviour
     {
         if (upgradeOptions.Length != 3)
         {
-            Debug.LogWarning("Upgrade options not equald to 3. This is an UpgradeUI limitation.");
+            Debug.LogWarning("Upgrade options not equal to 3. This is an UpgradeUI limitation.");
             gameObject.SetActive(false);
             return;
         }
@@ -38,11 +44,21 @@ public class UpgradeUI : MonoBehaviour
 
         // Reset selection
         selectedIndex = 0;
+        lastSelectedIndex = -1; // Force hover sound on first selection
         UpdateButtonSelection();
     }
 
     private void GenerateCards(UpgradeItem[] uItems)
     {
+        // Clear previous cards first
+        foreach (UpgradeCard uCard in upgradeCards)
+        {
+            uCard.button.onClick.RemoveAllListeners();
+            Destroy(uCard.gameObject);
+        }
+        upgradeCards.Clear();
+
+        // Generate new cards
         for (int i = 0; i < uItems.Length; i++)
         {
             GameObject uCardObj = Instantiate(upgradeCardPrefab, upgradeCardContainer.transform);
@@ -99,6 +115,9 @@ public class UpgradeUI : MonoBehaviour
         UpgradeCard selectedCard = upgradeCards[selectedIndex];
         if (selectedCard != null)
         {
+           
+                RuntimeManager.PlayOneShot(selectSound);
+
             selectedCard.button.onClick.Invoke(); // simulate click
         }
     }
@@ -117,13 +136,20 @@ public class UpgradeUI : MonoBehaviour
 
     private void UpdateButtonSelection()
     {
-        Debug.Log("Selected Upgrade Index: " + selectedIndex);
-        // Deselect all, then highlight the current one
-        for (int i = 0; i < upgradeCards.Count; i++)
+        // Play hover sound if selection changed
+        if (selectedIndex != lastSelectedIndex)
         {
-            upgradeCards[i].border.gameObject.SetActive(false);
+          
+                RuntimeManager.PlayOneShot(hoverSound);
+
+            lastSelectedIndex = selectedIndex;
         }
 
-        upgradeCards[selectedIndex].border.gameObject.SetActive(true); // ensures proper UI focus
+        // Deselect all, then highlight the current one
+        for (int i = 0; i < upgradeCards.Count; i++)
+            upgradeCards[i].border.gameObject.SetActive(false);
+
+        if (upgradeCards.Count > 0)
+            upgradeCards[selectedIndex].border.gameObject.SetActive(true);
     }
 }

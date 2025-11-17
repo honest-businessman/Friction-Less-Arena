@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     private UpgradeUI upgradeUI;
     private PauseUI pauseUI;
     private bool isSettingsOpen = false;
+
     private Action<UpgradeItem[]> upgradeAvailableHandler;
     private Action<UpgradeItem> upgradeSelectedHandler;
 
@@ -42,27 +43,36 @@ public class UIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         uiCamera = GameObject.FindWithTag("2D Camera").GetComponent<Camera>();
-        pauseUI = pausePanel.GetComponent<PauseUI>();
-        upgradeUI = upgradePanel.GetComponent<UpgradeUI>();
+
+        // Ensure components are found even if inactive
+        pauseUI = pausePanel.GetComponentInChildren<PauseUI>(true);
+        upgradeUI = upgradePanel.GetComponentInChildren<UpgradeUI>(true);
+    }
+
+    private void Start()
+    {
+        // Keep all panels active in hierarchy but hide as needed
+        mainMenuPanel.SetActive(true);   // or false if you don't want main menu immediately
+        settingsPanel.SetActive(false);
+        pausePanel.SetActive(false);
+        upgradePanel.SetActive(true);
     }
 
     private void OnEnable()
     {
+        // Upgrade available
         upgradeAvailableHandler = (uItems) =>
         {
-            GameManager.Instance.Player.GetComponent<PlayerController>().CancelDrift(); // Cancel drift when upgrade UI shows up, prevents held drift after resuming.
-            Time.timeScale = 0f;
-            upgradeUI.gameObject.SetActive(true);
-            upgradeUI.ShowUpgradeOptions(uItems);
-            currentFocus = UIFocus.Upgrades;
-            InputManager.Instance.EnableUIInput();
+            ForceShowUpgradeUI(uItems);
         };
         UpgradeEvents.OnUpgradesAvailable += upgradeAvailableHandler;
+
+        // Upgrade selected
         upgradeSelectedHandler = (uItem) =>
         {
             currentFocus = UIFocus.None;
             InputManager.Instance.EnablePlayerInput(GameManager.Instance.Player.GetComponent<PlayerController>());
-            upgradeUI.gameObject.SetActive(false);
+            upgradePanel.SetActive(false);
             Time.timeScale = 1f;
         };
         UpgradeEvents.OnUpgradeSelected += upgradeSelectedHandler;
@@ -74,34 +84,53 @@ public class UIManager : MonoBehaviour
         UpgradeEvents.OnUpgradeSelected -= upgradeSelectedHandler;
     }
 
+    // ==============================
+    // Upgrade UI Forced Show Method
+    // ==============================
+    public void ForceShowUpgradeUI(UpgradeItem[] items)
+    {
+        GameManager.Instance.Player.GetComponent<PlayerController>().CancelDrift();
+        Time.timeScale = 0f;
+
+        // Force canvas active and correct render
+        uiCanvas.gameObject.SetActive(true);
+        uiCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        uiCanvas.worldCamera = uiCamera;
+        uiCanvas.planeDistance = 2;
+        uiCanvas.sortingOrder = 999; // very high to render above everything
+
+        // Force upgrade panel active and top of hierarchy
+        upgradePanel.SetActive(true);
+        upgradePanel.transform.SetAsLastSibling();
+        upgradeUI.ShowUpgradeOptions(items);
+
+        currentFocus = UIFocus.Upgrades;
+        InputManager.Instance.EnableUIInput();
+
+        // Optionally hide other panels
+        mainMenuPanel.SetActive(false);
+        pausePanel.SetActive(false);
+        settingsPanel.SetActive(false);
+    }
+
+    // ==============================
+    // Pause / Settings / Main Menu
+    // ==============================
     public void HandlePause()
     {
-        Debug.Log("Pause Toggled");
         if (GameManager.Instance.CurrentState != GameManager.GameState.InGame)
             return;
 
-        // If pause menu is already open
         if (currentFocus == UIFocus.Pause)
         {
-            // Hitting pause with settings open returns to pause menu
-            if (currentFocus == UIFocus.Settings)
-            {
-                ShowPauseMenu();
-                RecalculateFocus();
-                return;
-            }
-
-            // Otherwise leaving pause menu returns to Upgrades or None
             HideAll();
             InputManager.Instance.EnablePlayerInput(GameManager.Instance.Player.GetComponent<PlayerController>());
             Time.timeScale = 1f;
-
             RecalculateFocus();
             GameEvents.ResumedGame();
             return;
         }
 
-        // In Game Pause Logic
         ShowPauseMenu();
         InputManager.Instance.EnableUIInput();
         Time.timeScale = 0f;
@@ -109,21 +138,21 @@ public class UIManager : MonoBehaviour
         GameEvents.PausedGame();
     }
 
-
     public void HandleNavigate(Vector2 direction)
     {
-        Debug.Log($"Trying to navigate with focus {currentFocus.ToString()}");
-        if (pauseUI.isActiveAndEnabled && currentFocus == UIFocus.Pause) { pauseUI.HandleNavigate(direction); }
-        else if (upgradeUI.isActiveAndEnabled && currentFocus == UIFocus.Upgrades) { upgradeUI.HandleNavigate(direction); }
+        if (pauseUI.isActiveAndEnabled && currentFocus == UIFocus.Pause)
+            pauseUI.HandleNavigate(direction);
+        else if (upgradeUI.isActiveAndEnabled && currentFocus == UIFocus.Upgrades)
+            upgradeUI.HandleNavigate(direction);
     }
 
     public void HandleSubmit()
     {
-        if (pauseUI.isActiveAndEnabled && currentFocus == UIFocus.Pause) { pauseUI.HandleSubmit(); }
-        else if (upgradeUI.isActiveAndEnabled && currentFocus == UIFocus.Upgrades) { upgradeUI.HandleSubmit(); }
-
+        if (pauseUI.isActiveAndEnabled && currentFocus == UIFocus.Pause)
+            pauseUI.HandleSubmit();
+        else if (upgradeUI.isActiveAndEnabled && currentFocus == UIFocus.Upgrades)
+            upgradeUI.HandleSubmit();
     }
-
 
     public void SetRenderTextureMode(RenderTexture target)
     {
@@ -140,6 +169,7 @@ public class UIManager : MonoBehaviour
         mainMenuPanel.SetActive(true);
         currentFocus = UIFocus.MainMenu;
     }
+
     public void ShowSettingsMenu()
     {
         HideAll();
@@ -147,6 +177,7 @@ public class UIManager : MonoBehaviour
         isSettingsOpen = true;
         currentFocus = UIFocus.Settings;
     }
+
     public void ShowPauseMenu()
     {
         HideAll();
@@ -159,50 +190,37 @@ public class UIManager : MonoBehaviour
         mainMenuPanel?.SetActive(false);
         settingsPanel?.SetActive(false);
         pausePanel?.SetActive(false);
+        upgradePanel?.SetActive(false);
+
         isSettingsOpen = false;
         currentFocus = UIFocus.None;
     }
 
     public Canvas GetUICanvas() { return uiCanvas; }
+
     public void RecalculateFocus()
     {
-        // Priority order (highest -> lowest):
-        // 1. Settings
-        // 2. Pause
-        // 3. Upgrades
-        // 4. Main Menu
-        // 5. None
-
-        // SETTINGS OPEN
-        if (settingsPanel != null && settingsPanel.activeInHierarchy)
+        // Priority: Settings > Pause > Upgrades > Main Menu > None
+        if (settingsPanel.activeInHierarchy)
         {
             currentFocus = UIFocus.Settings;
             return;
         }
-
-        // PAUSE MENU OPEN
-        if (pausePanel != null && pausePanel.activeInHierarchy)
+        if (pausePanel.activeInHierarchy)
         {
             currentFocus = UIFocus.Pause;
             return;
         }
-
-        // UPGRADE UI OPEN
         if (upgradeUI != null && upgradeUI.isActiveAndEnabled)
         {
             currentFocus = UIFocus.Upgrades;
             return;
         }
-
-        // MAIN MENU OPEN
-        if (mainMenuPanel != null && mainMenuPanel.activeInHierarchy)
+        if (mainMenuPanel.activeInHierarchy)
         {
             currentFocus = UIFocus.MainMenu;
             return;
         }
-
-        // DEFAULT
         currentFocus = UIFocus.None;
     }
-
 }

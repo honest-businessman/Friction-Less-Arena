@@ -1957,6 +1957,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6541252729822148548, guid: 86895a25a73e77a4e9fdd90183be7075, type: 3}
+      propertyPath: m_FirstSelected
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8172806155923391109, guid: 86895a25a73e77a4e9fdd90183be7075, type: 3}
       propertyPath: m_Name
       value: EventSystem
@@ -2160,6 +2164,46 @@ PrefabInstance:
       value: SettingsButton
       objectReference: {fileID: 0}
     - target: {fileID: 3356369911135982074, guid: 13ecf40551458ed4fb2a7f9dfd5915bd, type: 3}
+      propertyPath: clickSound.Path
+      value: event:/ButtonPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 3356369911135982074, guid: 13ecf40551458ed4fb2a7f9dfd5915bd, type: 3}
+      propertyPath: hoverSound.Path
+      value: event:/ButtonSwitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 3356369911135982074, guid: 13ecf40551458ed4fb2a7f9dfd5915bd, type: 3}
+      propertyPath: clickSound.Guid.Data1
+      value: -1181309087
+      objectReference: {fileID: 0}
+    - target: {fileID: 3356369911135982074, guid: 13ecf40551458ed4fb2a7f9dfd5915bd, type: 3}
+      propertyPath: clickSound.Guid.Data2
+      value: 1165642642
+      objectReference: {fileID: 0}
+    - target: {fileID: 3356369911135982074, guid: 13ecf40551458ed4fb2a7f9dfd5915bd, type: 3}
+      propertyPath: clickSound.Guid.Data3
+      value: -583042157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3356369911135982074, guid: 13ecf40551458ed4fb2a7f9dfd5915bd, type: 3}
+      propertyPath: clickSound.Guid.Data4
+      value: 1351023678
+      objectReference: {fileID: 0}
+    - target: {fileID: 3356369911135982074, guid: 13ecf40551458ed4fb2a7f9dfd5915bd, type: 3}
+      propertyPath: hoverSound.Guid.Data1
+      value: -85850155
+      objectReference: {fileID: 0}
+    - target: {fileID: 3356369911135982074, guid: 13ecf40551458ed4fb2a7f9dfd5915bd, type: 3}
+      propertyPath: hoverSound.Guid.Data2
+      value: 1331798053
+      objectReference: {fileID: 0}
+    - target: {fileID: 3356369911135982074, guid: 13ecf40551458ed4fb2a7f9dfd5915bd, type: 3}
+      propertyPath: hoverSound.Guid.Data3
+      value: -817652059
+      objectReference: {fileID: 0}
+    - target: {fileID: 3356369911135982074, guid: 13ecf40551458ed4fb2a7f9dfd5915bd, type: 3}
+      propertyPath: hoverSound.Guid.Data4
+      value: 581370875
+      objectReference: {fileID: 0}
+    - target: {fileID: 3356369911135982074, guid: 13ecf40551458ed4fb2a7f9dfd5915bd, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 952739754}
@@ -2291,6 +2335,46 @@ PrefabInstance:
       value: StartButton
       objectReference: {fileID: 0}
     - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: clickSound.Path
+      value: event:/ButtonPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: hoverSound.Path
+      value: event:/ButtonSwitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: clickSound.Guid.Data1
+      value: -1181309087
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: clickSound.Guid.Data2
+      value: 1165642642
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: clickSound.Guid.Data3
+      value: -583042157
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: clickSound.Guid.Data4
+      value: 1351023678
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: hoverSound.Guid.Data1
+      value: -85850155
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: hoverSound.Guid.Data2
+      value: 1331798053
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: hoverSound.Guid.Data3
+      value: -817652059
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
+      propertyPath: hoverSound.Guid.Data4
+      value: 581370875
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204309387865598180, guid: 36481202f3d36464f8148f7b8fa98f07, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -2389,6 +2473,46 @@ PrefabInstance:
     - target: {fileID: 4060766768910370203, guid: 757a280231ad6704399fbc410fc28b5d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497922520022023934, guid: 757a280231ad6704399fbc410fc28b5d, type: 3}
+      propertyPath: clickSound.Path
+      value: event:/ButtonPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497922520022023934, guid: 757a280231ad6704399fbc410fc28b5d, type: 3}
+      propertyPath: hoverSound.Path
+      value: event:/ButtonSwitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497922520022023934, guid: 757a280231ad6704399fbc410fc28b5d, type: 3}
+      propertyPath: clickSound.Guid.Data1
+      value: -1181309087
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497922520022023934, guid: 757a280231ad6704399fbc410fc28b5d, type: 3}
+      propertyPath: clickSound.Guid.Data2
+      value: 1165642642
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497922520022023934, guid: 757a280231ad6704399fbc410fc28b5d, type: 3}
+      propertyPath: clickSound.Guid.Data3
+      value: -583042157
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497922520022023934, guid: 757a280231ad6704399fbc410fc28b5d, type: 3}
+      propertyPath: clickSound.Guid.Data4
+      value: 1351023678
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497922520022023934, guid: 757a280231ad6704399fbc410fc28b5d, type: 3}
+      propertyPath: hoverSound.Guid.Data1
+      value: -85850155
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497922520022023934, guid: 757a280231ad6704399fbc410fc28b5d, type: 3}
+      propertyPath: hoverSound.Guid.Data2
+      value: 1331798053
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497922520022023934, guid: 757a280231ad6704399fbc410fc28b5d, type: 3}
+      propertyPath: hoverSound.Guid.Data3
+      value: -817652059
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497922520022023934, guid: 757a280231ad6704399fbc410fc28b5d, type: 3}
+      propertyPath: hoverSound.Guid.Data4
+      value: 581370875
       objectReference: {fileID: 0}
     - target: {fileID: 7497922520022023934, guid: 757a280231ad6704399fbc410fc28b5d, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target

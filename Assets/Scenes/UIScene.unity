@@ -3006,7 +3006,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913503010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 54}
   m_LocalScale: {x: 0.47390997, y: 0.55281, z: 1.053}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3035,6 +3035,20 @@ MonoBehaviour:
   navigateThreshold: 0.5
   deadzone: 0.2
   inputLocked: 0
+  hoverSound:
+    Guid:
+      Data1: -85850155
+      Data2: 1331798053
+      Data3: -817652059
+      Data4: 581370875
+    Path: event:/ButtonSwitch
+  selectSound:
+    Guid:
+      Data1: -1181309087
+      Data2: 1165642642
+      Data3: -583042157
+      Data4: 1351023678
+    Path: event:/ButtonPress
 --- !u!114 &913503013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6666,6 +6680,10 @@ PrefabInstance:
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 1472875692}
+    - target: {fileID: 8314337846601303776, guid: f01bc34d90563804b9f8f9cfc3b4ed19, type: 3}
+      propertyPath: currentFocus
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8314337846601303776, guid: f01bc34d90563804b9f8f9cfc3b4ed19, type: 3}
       propertyPath: upgradePanel
       value: 
