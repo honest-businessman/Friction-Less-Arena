@@ -10,7 +10,7 @@ public class FiringSystem : MonoBehaviour
     [SerializeField] GameObject hitscanTrailPrefab;
     [SerializeField] private float trailSpeed = 300f;
     [SerializeField] private float bounceDelay = 0.5f;
-    [SerializeField] private float chargeStartDelay = 2f;
+    [SerializeField] private float chargeStartDelay = 3f;
     [SerializeField] private Transform muzzle;
 
     //FMOD

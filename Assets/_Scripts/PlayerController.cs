@@ -28,6 +28,7 @@ public class PlayerController : CharacterBase
     public float chargeAngle = 30f; // degrees
     public float minChargeMoveSpeed = 3f; // degrees
     private float turnSpeedMultiplier = 10f; // Adjusted multiplier for rotation speed
+    private float chargeDelayModifier = 1f;
 
     [SerializeField] private TankDriftAudio driftAudio;
 
@@ -329,7 +330,7 @@ public class PlayerController : CharacterBase
 
     private void DelayChargingDrive(float delay)
     {
-        chargePauseEndTime = Time.time + delay;
+        chargePauseEndTime = Time.time + (delay / chargeDelayModifier);
         batterySR.material.color = Color.grey;
     }
 
@@ -410,11 +411,14 @@ public class PlayerController : CharacterBase
     {
         maxSpeed *= multiplier;
         maxDriftSpeed *= multiplier;
+        turnSpeed *= (multiplier - 1) / 2 + 1;
+        driftTurnSpeed *= (multiplier - 1) / 2 + 1;
         Debug.Log($"Speed upgraded! New speed: {moveSpeed}");
     }
     public void UpgradeDriveChargeSpeed(float multiplier)
     {
         chargePerSecond *= multiplier;
+        chargeDelayModifier *= multiplier;
         Debug.Log($"Drive charge speed upgraded! New charge speed: {chargePerSecond}");
     }
 

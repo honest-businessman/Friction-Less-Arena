@@ -16,6 +16,8 @@ public class WaveManager : MonoBehaviour
     public float spawningDuration = 10f;
     public float baseWallSpawnInterval = 15f;
     public float wallSpawnScaling = 1.1f;
+    [SerializeField] int baseBudget = 4;
+    [SerializeField] float budgetMultiplier = 1.2f;
 
     [Header("Spawn Settings")]
     public LayerMask spawnBlockingWallMask;
@@ -24,9 +26,10 @@ public class WaveManager : MonoBehaviour
 
     [Header("Runtime State")]
     public int currentWave = 0;
-    public int waveBudget;
+    public float waveBudget;
     public List<GameObject> enemiesToSpawn = new List<GameObject>();
     public List<GameObject> activeEnemies = new List<GameObject>();
+    public Dictionary<GameObject, float> wallDamageHistory = new Dictionary<GameObject, float>();
 
     [Header("Events")]
     public UnityEvent OnWaveStarted;
@@ -35,7 +38,7 @@ public class WaveManager : MonoBehaviour
 
     private SpawnPointSpawning sps;
     private WallSpawning ws;
-    private LayerMask wallObjectMask; // For prevent walls spawning on each other
+    private LayerMask wallObjectMask; // For prevent walls spawning on each otherd
     private Coroutine waveRoutine;
     private bool waveActive;
 
@@ -159,7 +162,7 @@ public class WaveManager : MonoBehaviour
 
     private void GenerateWave()
     {
-        waveBudget = currentWave * 5;
+        waveBudget = (currentWave * budgetMultiplier) * baseBudget;
         enemiesToSpawn = GenerateEnemies();
         ws.Setup();
     }

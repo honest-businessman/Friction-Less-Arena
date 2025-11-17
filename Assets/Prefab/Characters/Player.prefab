@@ -521,7 +521,6 @@ GameObject:
   - component: {fileID: 6789567841721172622}
   - component: {fileID: 7359771406497599112}
   - component: {fileID: 3981763763968397395}
-  - component: {fileID: 8489104909565751887}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -697,8 +696,27 @@ MonoBehaviour:
   OnRegenFinish:
     m_PersistentCalls:
       m_Calls: []
-  DamageSound: {fileID: 8300000, guid: e5ea4a3984f7efd418618b710759d31f, type: 3}
-  DeathSound: {fileID: 8300000, guid: b6b6fcf836651a14fa84ff7e17a76479, type: 3}
+  DamageEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayerDeathEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  EnemyDeathEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   DeathVFX: {fileID: 6429035345946287399, guid: 33394f4719a322f4d8df3d2418a7ae6a, type: 3}
   xpContainer: {fileID: 0}
   dropXP: 0
@@ -738,7 +756,7 @@ MonoBehaviour:
   chargeAngle: 30
   minChargeMoveSpeed: 3
   driftAudio: {fileID: 7359771406497599112}
-  shotAudio: {fileID: 8489104909565751887}
+  shotAudio: {fileID: 0}
   trackRightAnimator: {fileID: 0}
   trackLeftAnimator: {fileID: 0}
   trailLeft: {fileID: 4768731536022952363}
@@ -768,7 +786,7 @@ MonoBehaviour:
   hitscanTrailPrefab: {fileID: 4426810399315598589, guid: c9c829268ecd94d49a34a658782cd962, type: 3}
   trailSpeed: 300
   bounceDelay: 0.03
-  chargeStartDelay: 2
+  chargeStartDelay: 3
   muzzle: {fileID: 8775208010113824897}
   playerController: {fileID: 2531162805804896880}
   tankTrailShotAudio: {fileID: 3981763763968397395}
@@ -877,25 +895,6 @@ MonoBehaviour:
       Data3: 1309568129
       Data4: -906855665
     Path: event:/ChargedShot
---- !u!114 &8489104909565751887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 213092101655995850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4d041bd7ce9c554f9c17832d15d42ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tankShotEvent:
-    Guid:
-      Data1: 2134504257
-      Data2: 1311381729
-      Data3: -82169414
-      Data4: 1056713124
-    Path: event:/TankShot1
 --- !u!1 &1271005985674533720
 GameObject:
   m_ObjectHideFlags: 0

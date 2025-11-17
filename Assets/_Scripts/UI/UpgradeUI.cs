@@ -41,7 +41,7 @@ public class UpgradeUI : MonoBehaviour
         }
 
         GenerateCards(upgradeOptions);
-
+        gameObject.SetActive(true);
         // Reset selection
         selectedIndex = 0;
         lastSelectedIndex = -1; // Force hover sound on first selection

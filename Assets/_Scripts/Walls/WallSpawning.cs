@@ -43,8 +43,6 @@ public class WallSpawning : MonoBehaviour
 
         while (spawningFlag)
         {
-            yield return new WaitForSeconds(interval);
-
             bool trySpawn = true;
             int safetyCounter = 0;
 
@@ -90,6 +88,7 @@ public class WallSpawning : MonoBehaviour
                 }
             }
         }
+        yield return new WaitForSeconds(interval);
     }
 
     public void StopSpawning()

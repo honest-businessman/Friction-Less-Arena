@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 547316070591380797}
   - component: {fileID: -2383665468862383048}
   - component: {fileID: 8166332155690673006}
+  - component: {fileID: 3383382797606659657}
   m_Layer: 12
   m_Name: DamagingWall
   m_TagString: Map Object
@@ -151,8 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vulnerable: 1
-  health: 2
-  maxHealth: 2
+  health: 1
+  maxHealth: 1
   regenerateHealth: 0
   regenAmount: 3
   regenDelay: 5
@@ -162,10 +163,29 @@ MonoBehaviour:
   OnRegenFinish:
     m_PersistentCalls:
       m_Calls: []
-  DamageSound: {fileID: 0}
-  DeathSound: {fileID: 0}
+  DamageEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayerDeathEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  EnemyDeathEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   DeathVFX: {fileID: 0}
-  xpContainer: {fileID: 5878789037923216627, guid: 2b9bb007a9ce61c42a3d779a4b8ecd61, type: 3}
+  xpContainer: {fileID: 5878789037923216627, guid: f8f71caf06825b346ab333fe7a36dd35, type: 3}
   dropXP: 1
   targetRenderer1: {fileID: 0}
   targetRenderer2: {fileID: 0}
@@ -213,3 +233,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   damageCooldown: 2
+  damageCollider: {fileID: 3383382797606659657}
+--- !u!61 &3383382797606659657
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237680117543784354}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.4, y: 1.4}
+  m_EdgeRadius: 0

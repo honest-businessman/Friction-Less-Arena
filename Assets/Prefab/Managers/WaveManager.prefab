@@ -58,17 +58,17 @@ MonoBehaviour:
   - wallPrefab: {fileID: 237680117543784354, guid: e1eed6abe4217794996738300e49f897, type: 3}
     minimumWave: 2
   - wallPrefab: {fileID: 237680117543784354, guid: f08464367d6483748ad5399686790d06, type: 3}
-    minimumWave: 5
+    minimumWave: 1
   waveDuration: 40
   spawningDuration: 30
   baseWallSpawnInterval: 10
-  wallSpawnScaling: 1.1
+  wallSpawnScaling: 1.05
   spawnBlockingWallMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   spawnBlockingEnemyMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4480
   blockSpawnCheckRadius: 3
   currentWave: 0
   waveBudget: 0
