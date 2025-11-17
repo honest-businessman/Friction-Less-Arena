@@ -138,6 +138,66 @@ PrefabInstance:
     - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
       propertyPath: shotAudio
       value: 
+      objectReference: {fileID: 1521269534}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: xpPickupEvent.Path
+      value: event:/XP
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: driftLoopEvent.Path
+      value: event:/TankDrifting
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: fullDriveLoopEvent.Path
+      value: event:/BatteryCharge
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: xpPickupEvent.Guid.Data1
+      value: -218878420
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: xpPickupEvent.Guid.Data2
+      value: 1316312775
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: xpPickupEvent.Guid.Data3
+      value: -31906409
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: xpPickupEvent.Guid.Data4
+      value: -182105711
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: driftLoopEvent.Guid.Data1
+      value: 838199813
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: driftLoopEvent.Guid.Data2
+      value: 1318104827
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: driftLoopEvent.Guid.Data3
+      value: -1115378279
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: driftLoopEvent.Guid.Data4
+      value: -1422495259
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: fullDriveLoopEvent.Guid.Data1
+      value: -1497149305
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: fullDriveLoopEvent.Guid.Data2
+      value: 1215672595
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: fullDriveLoopEvent.Guid.Data3
+      value: 104841886
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+      propertyPath: fullDriveLoopEvent.Guid.Data4
+      value: -1039128916
       objectReference: {fileID: 0}
     - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
       propertyPath: DeathEvent.Path
@@ -466,42 +526,43 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 1634058560872992135, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
   m_PrefabInstance: {fileID: 3090318916966835265}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1013465100 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2913776580617316615, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
-  m_PrefabInstance: {fileID: 3090318916966835265}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1013465102
-MonoBehaviour:
+--- !u!84 &865439708
+RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013465100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 931133800
-      Data2: 1208066204
-      Data3: -1190686808
-      Data4: 1969691072
-    Path: event:/Battle music
-  Event: 
-  EventPlayTrigger: 1
-  EventStopTrigger: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  m_Name: ReflectionRenderTexture
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 3413
+  m_Height: 1920
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 90
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!212 &1269393896 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5206092232246172004, guid: 2522624f2dbfba145acc80763068e540, type: 3}
@@ -561,7 +622,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2078656970394219683, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1521269535}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
 --- !u!212 &1408591891 stripped
@@ -569,43 +633,57 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5206092232246172004, guid: 2522624f2dbfba145acc80763068e540, type: 3}
   m_PrefabInstance: {fileID: 1607849421}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &1527720334
-RenderTexture:
+--- !u!1 &1521269533
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ReflectionRenderTexture
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
   serializedVersion: 6
-  m_Width: 3413
-  m_Height: 1920
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 90
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
+  m_Component:
+  - component: {fileID: 1521269535}
+  - component: {fileID: 1521269534}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1521269534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521269533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d041bd7ce9c554f9c17832d15d42ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankShotEvent:
+    Guid:
+      Data1: 2134504257
+      Data2: 1311381729
+      Data3: -82169414
+      Data4: 1056713124
+    Path: event:/TankShot1
+--- !u!4 &1521269535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521269533}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1628246691}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1607849421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -687,6 +765,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2522624f2dbfba145acc80763068e540, type: 3}
+--- !u!4 &1628246691 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2078656970394219683, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
+  m_PrefabInstance: {fileID: 1340235287}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1983749787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -864,7 +947,7 @@ PrefabInstance:
     - target: {fileID: 1634058560872992135, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1527720334}
+      objectReference: {fileID: 865439708}
     - target: {fileID: 2913776580617316615, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
       propertyPath: m_Name
       value: Game2DCamera
@@ -876,10 +959,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2913776580617316615, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1013465102}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
 --- !u!1001 &4639255743445334383
 PrefabInstance:
