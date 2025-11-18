@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DriveChargeSpeedRareUpgradeItem
   m_EditorClassIdentifier: 
   itemName: Improved Capacitors
-  icon: {fileID: -1597003758913642160, guid: abe1f7d44e5ef4649918ff621fbe29ca, type: 3}
+  icon: {fileID: 7426655976195545166, guid: 492997c3c2967a844beb1b39f19853d1, type: 3}
   description: Increases the Frictionless Drive charge speed.
   upgradeType: 5
   rarity: 1

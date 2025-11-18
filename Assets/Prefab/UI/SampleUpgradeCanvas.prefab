@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 64
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
@@ -470,11 +470,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0569f38189246b641bdec5e78e339f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradePanel: {fileID: 774200263233469373}
-  optionAButton: {fileID: 4346337613649919183}
-  optionBButton: {fileID: 17417113469942221}
-  optionAText: {fileID: 9053639049105312755}
-  optionBText: {fileID: 1085384323137299437}
+  upgradeCardPrefab: {fileID: 0}
+  upgradeCardContainer: {fileID: 0}
+  navigateThreshold: 0.5
+  deadzone: 0.2
+  inputLocked: 0
+  hoverSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  selectSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &7955905691787817895
 GameObject:
   m_ObjectHideFlags: 0

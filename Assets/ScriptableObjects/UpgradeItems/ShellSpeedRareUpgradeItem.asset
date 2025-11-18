@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShellSpeedRareUpgradeItem
   m_EditorClassIdentifier: 
   itemName: Shell Drag Reductions
-  icon: {fileID: -2413806693520163455, guid: b6d904533e634b443930de9efed9b70c, type: 3}
+  icon: {fileID: -945607946056877743, guid: 7a4b3dd8f9c43b844b3c9729edbb9e44, type: 3}
   description: Increases the turret's shell speed.
   upgradeType: 1
   rarity: 1

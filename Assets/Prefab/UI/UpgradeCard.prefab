@@ -206,6 +206,8 @@ MonoBehaviour:
   rareColor: {r: 0.49381453, g: 0.71577495, b: 0.764151, a: 1}
   epicColor: {r: 0.6866451, g: 0.46342114, b: 0.7735849, a: 1}
   legendaryColor: {r: 0.817888, g: 0.8207547, b: 0.4452207, a: 1}
+  iconDirection: 4
+  customIconScale: {x: 2, y: 2}
 --- !u!1 &2581953698751692849
 GameObject:
   m_ObjectHideFlags: 0

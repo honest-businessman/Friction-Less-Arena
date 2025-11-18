@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AmmunitionPowerEpicUpgradeItem
   m_EditorClassIdentifier: 
   itemName: Exotic Ammunition
-  icon: {fileID: 1697268573634343191, guid: 2523d458b6d0113498fca4db96192955, type: 3}
+  icon: {fileID: -387258680793873256, guid: ece06018f7ef7af419fc9f383b822bf0, type: 3}
   description: Additional Charged Shot turret effect
   upgradeType: 3
   rarity: 2

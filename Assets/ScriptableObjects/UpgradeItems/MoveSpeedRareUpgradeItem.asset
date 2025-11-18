@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MoveSpeedRareUpgradeItem
   m_EditorClassIdentifier: 
   itemName: Improved Tracks
-  icon: {fileID: 1697268573634343191, guid: 2523d458b6d0113498fca4db96192955, type: 3}
+  icon: {fileID: 2886234653885015933, guid: 0c898474507aa90468557b1745cdd10a, type: 3}
   description: Greatly increase tank move speed.
   upgradeType: 4
   rarity: 1

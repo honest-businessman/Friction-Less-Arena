@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireRateUncommonUpgradeItem
   m_EditorClassIdentifier: 
   itemName: Auto Loader Lubricant
-  icon: {fileID: -3036036819145591855, guid: 2207c2c4b6112a54c9ee9b799d398ded, type: 3}
+  icon: {fileID: 2115630045412131650, guid: acb35309f8e017749acd8f9c8ab0eced, type: 3}
   description: Increases firerate of normal shots.
   upgradeType: 0
   rarity: 0
