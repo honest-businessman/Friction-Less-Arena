@@ -168,4 +168,21 @@ public class WallSpawning : MonoBehaviour
     {
         usedTiles.Remove(tilePos);
     }
+
+    public List<WallObject> GetAllWalls()
+    {
+        List<WallObject> walls = new List<WallObject>();
+
+        foreach (Transform child in transform)
+        {
+            if (child != null && child.TryGetComponent<WallObject>(out var wall))
+            {
+                walls.Add(wall);
+            }
+        }
+
+        return walls;
+    }
+
+
 }

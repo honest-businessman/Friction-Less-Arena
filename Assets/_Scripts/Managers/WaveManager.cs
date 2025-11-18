@@ -274,7 +274,6 @@ public class WaveManager : MonoBehaviour
             {
                 if (enemy.TryGetComponent<HealthSystem>(out var health))
                 {
-                    // Properly clear all OnDie subscribers via HealthSystem method
                     health.ClearOnDie();
                 }
                 Destroy(enemy);
@@ -283,7 +282,16 @@ public class WaveManager : MonoBehaviour
         activeEnemies.Clear();
         enemiesToSpawn.Clear();
 
-        ws.ClearAllWalls();
+        // Destroy walls while suppressing SFX
+        foreach (WallObject wall in ws.GetAllWalls()) // assume ws can provide a list of spawned walls
+        {
+            if (wall != null)
+            {
+                wall.suppressSFX = true; // prevent loud SFX on player death
+                Destroy(wall.gameObject);
+            }
+        }
+
         wallDamageHistory.Clear();
 
         XPObject[] xpObjects = FindObjectsByType<XPObject>(FindObjectsSortMode.None);
@@ -305,6 +313,7 @@ public class WaveManager : MonoBehaviour
 
         sps.ResetSpawnPoints();
     }
+
 
     private void StartWallSpawning(GameObject wallPrefab, float interval)
     {

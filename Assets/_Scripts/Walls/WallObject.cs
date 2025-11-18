@@ -9,24 +9,27 @@ public class WallObject : MonoBehaviour
     [Header("FMOD Events")]
     [SerializeField] private EventReference wallDestroySFX; // Assign your wall death sound
 
+    // Flag to prevent SFX during mass cleanup
+    public bool suppressSFX = false; // set true when cleaning waves
+
     public void Initialize(WallSpawning wallSpawner, Vector3Int tilePosition)
     {
         spawner = wallSpawner;
         tilePos = tilePosition;
     }
 
+
     protected virtual void OnDestroy()
     {
-        // Play FMOD sound when wall is destroyed
-        if (!wallDestroySFX.IsNull)
+        if (!suppressSFX && !wallDestroySFX.IsNull)
         {
             RuntimeManager.PlayOneShot(wallDestroySFX, transform.position);
         }
 
-        // Free tile when destroyed
         if (spawner != null)
         {
             spawner.FreeTile(tilePos);
         }
     }
+
 }
