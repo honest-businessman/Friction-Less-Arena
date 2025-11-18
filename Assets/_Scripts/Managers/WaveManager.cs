@@ -18,6 +18,11 @@ public class WaveManager : MonoBehaviour
     [SerializeField] int baseBudget = 4;
     [SerializeField] float budgetMultiplier = 1.2f;
 
+    //FMOD
+    [Header("FMOD")]
+    [SerializeField] private FMODUnity.EventReference waveStartSFX;
+
+
     [Header("Spawn Settings")]
     public LayerMask spawnBlockingWallMask;
     public LayerMask spawnBlockingEnemyMask;
@@ -84,7 +89,10 @@ public class WaveManager : MonoBehaviour
         if (waveRoutine != null)
             StopCoroutine(waveRoutine);
 
+
         currentWave++;
+
+
         waveRoutine = StartCoroutine(RunWave());
     }
 
@@ -93,6 +101,7 @@ public class WaveManager : MonoBehaviour
         Debug.Log("Generating Wave...");
         GenerateWave();
         OnWaveStarted.Invoke();
+
 
         Debug.Log($"Starting Wave {currentWave} with budget {waveBudget} spawning {enemiesToSpawn.Count} enemies.");
         waveActive = true;
@@ -120,12 +129,21 @@ public class WaveManager : MonoBehaviour
                     OnEnemySpawned.Invoke(enemySpawned);
                     activeEnemies.Add(enemySpawned);
 
-                    // CRITICAL FIX: Use WeakReference to prevent closure memory leak
+                    // Use WeakReference to avoid holding strong refs to the enemy GameObject
                     var enemyWeakRef = new WeakReference<GameObject>(enemySpawned);
 
                     if (enemySpawned.TryGetComponent(out HealthSystem health))
                     {
-                        health.OnDie += () => OnEnemyDied(enemyWeakRef, health);
+                        // Must store the delegate so it can be removed later
+                        Action deathHandler = null;
+                        deathHandler = () =>
+                        {
+                            // unsubscribe this handler (prevents leaks / double-calls)
+                            health.OnDie -= deathHandler;
+                            OnEnemyDied(enemyWeakRef, health);
+                        };
+
+                        health.OnDie += deathHandler;
                     }
                 }
 
@@ -155,8 +173,7 @@ public class WaveManager : MonoBehaviour
             activeEnemies.Remove(enemy);
         }
 
-        // Always unsubscribe to prevent multiple calls
-        health.OnDie -= () => OnEnemyDied(enemyWeakRef, health);
+        // NOTE: the handler unsubscribes itself when it runs, so we don't try to remove it here.
 
         if (activeEnemies.Count == 0 && enemiesToSpawn.Count == 0)
         {
@@ -164,6 +181,11 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    private void PlayWaveSFX()
+    {
+        if (!waveStartSFX.IsNull)
+            FMODUnity.RuntimeManager.PlayOneShot(waveStartSFX);
+    }
     private void EndWave()
     {
         if (!waveActive) return;
@@ -173,6 +195,7 @@ public class WaveManager : MonoBehaviour
 
         enemiesToSpawn.Clear();
         OnWaveCompleted.Invoke();
+        PlayWaveSFX();
     }
 
     private void EndWaveEarly()
@@ -251,8 +274,8 @@ public class WaveManager : MonoBehaviour
             {
                 if (enemy.TryGetComponent<HealthSystem>(out var health))
                 {
-                    // Force-unsubscribe any lingering handlers
-                    health.OnDie -= null; // Not perfect, but helps
+                    // Properly clear all OnDie subscribers via HealthSystem method
+                    health.ClearOnDie();
                 }
                 Destroy(enemy);
             }

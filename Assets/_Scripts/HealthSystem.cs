@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using FMODUnity;
 
 public class HealthSystem : MonoBehaviour
 {
@@ -17,9 +18,10 @@ public class HealthSystem : MonoBehaviour
     public UnityEvent OnRegenFinish;
 
     [Header("FMOD Events")]
-    [SerializeField] private FMODUnity.EventReference DamageEvent;         // Player takes damage
-    [SerializeField] private FMODUnity.EventReference PlayerDeathEvent;   // Player dies
-    [SerializeField] private FMODUnity.EventReference EnemyDeathEvent;    // Enemy dies (NEW)
+    [SerializeField] private EventReference DamageEvent;         // Player takes damage
+    [SerializeField] private EventReference PlayerDeathEvent;   // Player dies
+    [SerializeField] private EventReference EnemyDeathEvent;    // Enemy dies
+    [SerializeField] private EventReference RegenHealthEvent;   // Health regeneration SFX
 
     [Header("Death VFX")]
     [SerializeField] GameObject DeathVFX;
@@ -47,38 +49,37 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (vulnerable)
+        if (!vulnerable) return;
+
+        Debug.Log($"{gameObject.name} taken {damage} damage!");
+        health -= damage;
+        OnDamageTaken?.Invoke(health, maxHealth);
+
+        if (regenCoroutine != null)
+            StopCoroutine(regenCoroutine);
+
+        if (health <= 0)
         {
-            Debug.Log($"{gameObject.name} taken {damage} damage!");
-            health -= damage;
-            OnDamageTaken?.Invoke(health, maxHealth);
+            health = 0;
+            Die();
+        }
+        else
+        {
+            UpdateSprite();
 
-            if (regenCoroutine != null) { StopCoroutine(regenCoroutine); }
-
-            if (health <= 0)
+            if (regenerateHealth)
             {
-                health = 0;
-                Die();
+                regenCoroutine = StartCoroutine(StartRegenerateDelay());
+                OnRegenStart?.Invoke();
             }
-            else
+
+            if (CompareTag("Player"))
             {
-                UpdateSprite();
+                RuntimeManager.PlayOneShot(DamageEvent, transform.position);
 
-                if (regenerateHealth)
-                {
-                    regenCoroutine = StartCoroutine(StartRegenerateDelay());
-                    OnRegenStart?.Invoke();
-                }
-
-                if (CompareTag("Player"))
-                {
-                    // FMOD one-shot for taking damage
-                    FMODUnity.RuntimeManager.PlayOneShot(DamageEvent, transform.position);
-
-                    GlitchFlash glitch = GetComponent<GlitchFlash>();
-                    if (glitch != null)
-                        glitch.TriggerGlitch();
-                }
+                GlitchFlash glitch = GetComponent<GlitchFlash>();
+                if (glitch != null)
+                    glitch.TriggerGlitch();
             }
         }
     }
@@ -103,29 +104,19 @@ public class HealthSystem : MonoBehaviour
             Destroy(explosion, 2f);
         }
 
-        // 🎵 FMOD Death Logic
         if (CompareTag("Player"))
-        {
-            FMODUnity.RuntimeManager.PlayOneShot(PlayerDeathEvent, transform.position);
-        }
+            RuntimeManager.PlayOneShot(PlayerDeathEvent, transform.position);
         else
+            RuntimeManager.PlayOneShot(EnemyDeathEvent, transform.position);
+
+        if (!CompareTag("Player") && xpContainer != null)
         {
-            FMODUnity.RuntimeManager.PlayOneShot(EnemyDeathEvent, transform.position);
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+                xpContainer.SpawnXP(transform.position, player.transform);
         }
 
-        // XP drop logic (only for enemies)
-        if (!CompareTag("Player"))
-        {
-            if (xpContainer != null)
-            {
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-                if (player != null)
-                {
-                    xpContainer.SpawnXP(transform.position, player.transform);
-                }
-            }
-        }
-
+        OnDie?.Invoke();
         Destroy(gameObject);
     }
 
@@ -136,25 +127,29 @@ public class HealthSystem : MonoBehaviour
 
         regenCoroutine = null;
         GainHealth(regenAmount);
+
+        // Play regen SFX
+        if (RegenHealthEvent.IsNull == false)
+            RuntimeManager.PlayOneShot(RegenHealthEvent, transform.position);
+
         OnRegenFinish?.Invoke();
         Debug.Log($"{gameObject.name} has regenerated {regenAmount} health!");
     }
 
-    private void OnDestroy()
+    private void OnDestroy() { }
+
+    public void ClearOnDie()
     {
-        OnDie?.Invoke();
+        OnDie = null;
     }
 
     private void UpdateSprite()
     {
         Sprite newSprite = null;
 
-        if (health >= 3)
-            newSprite = spriteAt3HP;
-        else if (health == 2)
-            newSprite = spriteAt2HP;
-        else if (health == 1)
-            newSprite = spriteAt1HP;
+        if (health >= 3) newSprite = spriteAt3HP;
+        else if (health == 2) newSprite = spriteAt2HP;
+        else if (health == 1) newSprite = spriteAt1HP;
 
         ApplySprite(targetRenderer1, newSprite);
         ApplySprite(targetRenderer2, newSprite);
@@ -164,9 +159,6 @@ public class HealthSystem : MonoBehaviour
 
     private void ApplySprite(SpriteRenderer renderer, Sprite sprite)
     {
-        if (renderer != null)
-        {
-            renderer.sprite = sprite;
-        }
+        if (renderer != null) renderer.sprite = sprite;
     }
 }

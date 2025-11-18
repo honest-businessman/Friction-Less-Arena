@@ -2,6 +2,7 @@ using Pathfinding;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
+using FMODUnity;
 
 public class AiBombController : AiMeleeBase
 {
@@ -9,11 +10,13 @@ public class AiBombController : AiMeleeBase
     private ExplosionSettings explosionSettings;
     [SerializeField]
     private float explosionDelay = 1.5f;
-   
+
+    [Header("FMOD")]
+    [SerializeField] private EventReference bombExplosionSFX;
+
     private bool hasExploded = false;
     private FactionController fc;
     private Rigidbody2D rb;
-    
 
     protected override void Start()
     {
@@ -21,6 +24,7 @@ public class AiBombController : AiMeleeBase
         fc = GetComponent<FactionController>();
         rb = GetComponent<Rigidbody2D>();
     }
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (hasExploded) return;
@@ -54,6 +58,13 @@ public class AiBombController : AiMeleeBase
             yield return new WaitForSeconds(explosionDelay);
 
             Debug.Log("Exploding now!");
+
+            // Play FMOD explosion SFX
+            if (bombExplosionSFX.IsNull == false)
+            {
+                RuntimeManager.PlayOneShot(bombExplosionSFX, transform.position);
+            }
+
             // Instantiate explosion object
             if (explosionSettings.explosionPrefab != null)
             {

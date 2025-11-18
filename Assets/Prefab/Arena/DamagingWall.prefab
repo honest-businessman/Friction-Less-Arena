@@ -231,6 +231,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ace1b4a3d9e1b14a846600ce9339523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallDestroySFX:
+    Guid:
+      Data1: 199687429
+      Data2: 1201106154
+      Data3: 2140048785
+      Data4: -1179328232
+    Path: event:/WallBreak
   damage: 1
   damageCooldown: 2
   damageCollider: {fileID: 3383382797606659657}

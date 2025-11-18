@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.Events;
 using System.Linq;
@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour
     private string gameSceneName = "FrictionLess";
     private string uiSceneName = "UIScene";
 
+    // --- FIX: track the WaveLoop coroutine so we can stop it on restart/end
+    private Coroutine waveLoopRoutine = null;
+
     private void Awake()
     {
         if (Instance == null)
@@ -80,7 +83,7 @@ public class GameManager : MonoBehaviour
         CleanupPlayer();
         CurrentState = GameState.MainMenu;
         if (!SceneManager.GetSceneByName(uiSceneName).isLoaded)  // Loads UI Scene
-        { 
+        {
             isUiSceneLoaded = true;
             StartCoroutine(LoadSceneAsync(uiSceneName, LoadSceneMode.Additive, () =>
             {
@@ -117,6 +120,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+
         CurrentState = GameState.InGame;
         if (!SceneManager.GetSceneByName(uiSceneName).isLoaded)
         {
@@ -125,15 +129,18 @@ public class GameManager : MonoBehaviour
                 UIManager.Instance.HideAll();
             }));
         }
-
         else { UIManager.Instance.HideAll(); }
+
         Time.timeScale = 1f;
         CleanupPlayer();
         SpawnPlayer();
         InitializeInGameManagers();
 
         InputManager.Instance.EnablePlayerInput(Player.GetComponent<PlayerController>());
-        StartCoroutine(WaveLoop());
+
+        // --- FIX: only start one WaveLoop and keep reference to it
+        if (waveLoopRoutine == null)
+            waveLoopRoutine = StartCoroutine(WaveLoop());
     }
 
     private void CleanupPlayer()
@@ -149,15 +156,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-private void SpawnPlayer()
-{
-    Player = GameObject.FindWithTag("Player");
-
-    if (Player != null)
+    private void SpawnPlayer()
     {
-        Debug.Log("Player already exists in the scene.");
-    }
-    else
+        Player = GameObject.FindWithTag("Player");
+
+        if (Player != null)
+        {
+            Debug.Log("Player already exists in the scene.");
+        }
+        else
         {
             Vector3[] spawnPositionArray = GameObject.FindGameObjectsWithTag("Spawnpoint Player")
              .Select(sp => sp.transform.position)
@@ -178,23 +185,45 @@ private void SpawnPlayer()
 
         waveManager = GetComponentInChildren<WaveManager>();
         waveManager.CleanWaves();
-
-
     }
 
     private IEnumerator WaveLoop()
     {
         Debug.Log("Starting Wave Loop...");
+
+        // This local listener will be added once for this WaveLoop run.
+        // It will be removed when the coroutine ends (in finally).
         bool waveDone = false;
-        waveManager.OnWaveCompleted.AddListener(() => waveDone = true);
-        while (true)
+        UnityAction onCompleted = () => waveDone = true;
+
+        if (waveManager == null)
         {
-            waveDone = false;
-            yield return new WaitForSeconds(waveDelay);
-            waveManager.NextWave();
-            Debug.Log("Wave Loop Waiting for Next Wave...");
-            yield return new WaitUntil(() => waveDone);
-            Debug.Log($"Wave {waveManager.currentWave} completed.");
+            Debug.LogError("WaveLoop started but waveManager is null!");
+            yield break;
+        }
+
+        waveManager.OnWaveCompleted.AddListener(onCompleted);
+
+        try
+        {
+            while (true)
+            {
+                waveDone = false;
+                yield return new WaitForSeconds(waveDelay);
+                waveManager.NextWave();
+                Debug.Log("Wave Loop Waiting for Next Wave...");
+                yield return new WaitUntil(() => waveDone);
+                Debug.Log($"Wave {waveManager.currentWave} completed.");
+            }
+        }
+        finally
+        {
+            // Remove the listener so it doesn't persist if the coroutine is stopped
+            if (waveManager != null)
+                waveManager.OnWaveCompleted.RemoveListener(onCompleted);
+
+            // Clear the coroutine reference
+            waveLoopRoutine = null;
         }
     }
 
@@ -209,8 +238,17 @@ private void SpawnPlayer()
         Time.timeScale = 1.0f;
         CurrentState = GameState.GameOver;
         CleanupPlayer();
+
+        // --- FIX: stop wave loop so duplicate coroutines do not pile up and call NextWave
+        if (waveLoopRoutine != null)
+        {
+            StopCoroutine(waveLoopRoutine);
+            waveLoopRoutine = null;
+        }
+
         StartCoroutine(RestartAfterDelay(0f));
     }
+
     public void EndGame()
     {
         Time.timeScale = 1.0f;
@@ -218,28 +256,42 @@ private void SpawnPlayer()
         CurrentState = GameState.MainMenu;
         UIManager.Instance.HideAll();
         CleanupPlayer();
+
+        // stop wave loop if running
+        if (waveLoopRoutine != null)
+        {
+            StopCoroutine(waveLoopRoutine);
+            waveLoopRoutine = null;
+        }
+
         waveManager.CleanWaves();
-        if (isMainScene) 
+        if (isMainScene)
         {
             SceneManager.UnloadSceneAsync(gameSceneName);
             ScreenManager.Instance.ExitToMenu();
             CameraAnimationManager.Instance.TransitionToMainMenu();
             inputManager.EnableUIInput();
         }
-        else 
+        else
         {
             SceneManager.LoadSceneAsync(gameSceneName, LoadSceneMode.Single);
         }
-        
+
     }
 
     private IEnumerator RestartAfterDelay(float restartDelay)
     {
         Debug.Log($"Restarting in {restartDelay} seconds...");
         yield return new WaitForSeconds(restartDelay);
-        // asynchronously reload the current scene
-        waveManager.CleanWaves();
+
+        // Ensure waves are cleared before unloading scene
+        if (waveManager != null)
+            waveManager.CleanWaves();
+
+        // unload previous game scene (index 1)
         yield return SceneManager.UnloadSceneAsync(1);
+
+        // reload game scene
         yield return LoadSceneAsync(gameSceneName, LoadSceneMode.Additive);
 
         // Once Loaded, restart the game

@@ -391,7 +391,7 @@ MonoBehaviour:
     Path: event:/EnemyDeath
   DeathVFX: {fileID: 6429035345946287399, guid: 33394f4719a322f4d8df3d2418a7ae6a, type: 3}
   xpContainer: {fileID: 5878789037923216627, guid: 672d6149646181644a4925dc0dfab62a, type: 3}
-  dropXP: 1
+  dropXP: 0
   targetRenderer1: {fileID: 0}
   targetRenderer2: {fileID: 0}
   targetRenderer3: {fileID: 0}
@@ -427,6 +427,13 @@ MonoBehaviour:
   updateInterval: 0.05
   explosionSettings: {fileID: 11400000, guid: 8dd50d5cc022ccd4e855cd2a9c860d09, type: 2}
   explosionDelay: 1.2
+  bombExplosionSFX:
+    Guid:
+      Data1: 1638827408
+      Data2: 1251181248
+      Data3: 144067211
+      Data4: -1801441369
+    Path: event:/DroneBomb
 --- !u!95 &7442636503008655908
 Animator:
   serializedVersion: 7

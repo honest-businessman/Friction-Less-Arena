@@ -150,14 +150,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be818b03d2104ef4b9f24356e61236ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vulnerable: 1
   health: 1
   maxHealth: 1
-  vulnerable: 1
-  DamageSound: {fileID: 0}
-  DeathSound: {fileID: 0}
+  regenerateHealth: 0
+  regenAmount: 3
+  regenDelay: 5
+  OnRegenStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRegenFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  DamageEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayerDeathEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  EnemyDeathEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   DeathVFX: {fileID: 0}
   xpContainer: {fileID: 5878789037923216627, guid: 2b9bb007a9ce61c42a3d779a4b8ecd61, type: 3}
   dropXP: 1
+  targetRenderer1: {fileID: 0}
+  targetRenderer2: {fileID: 0}
+  targetRenderer3: {fileID: 0}
+  targetRenderer4: {fileID: 0}
+  spriteAt3HP: {fileID: 0}
+  spriteAt2HP: {fileID: 0}
+  spriteAt1HP: {fileID: 0}
 --- !u!114 &547316070591380797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,3 +230,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a9c476440b66744a2059241b0b4055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallDestroySFX:
+    Guid:
+      Data1: 199687429
+      Data2: 1201106154
+      Data3: 2140048785
+      Data4: -1179328232
+    Path: event:/WallBreak
