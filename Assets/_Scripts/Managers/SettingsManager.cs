@@ -10,7 +10,6 @@ public class SettingsManager : MonoBehaviour
     public float musicVolume = 0.8f;
     public float sfxVolume = 0.8f;
     public bool fullscreen = true;
-    public int resolutionIndex = 1;
     public bool trainMode = false;
     public bool reduceShake = false;
 
@@ -32,7 +31,6 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVolume", musicVolume);
         PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
         PlayerPrefs.SetInt("Fullscreen", fullscreen ? 1 : 0);
-        PlayerPrefs.SetInt("ResolutionIndex", resolutionIndex);
         PlayerPrefs.SetInt("TrainMode", trainMode ? 1 : 0);
         PlayerPrefs.SetInt("ReduceShake", reduceShake ? 1 : 0);
         PlayerPrefs.Save();
@@ -45,7 +43,6 @@ public class SettingsManager : MonoBehaviour
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.8f);
         sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.8f);
         fullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
-        resolutionIndex = PlayerPrefs.GetInt("ResolutionIndex", 0);
         trainMode = PlayerPrefs.GetInt("TrainMode", 0) == 1;
         reduceShake = PlayerPrefs.GetInt("ReduceShake", 0) == 1;
         Debug.Log("Settings loaded.");
@@ -64,13 +61,6 @@ public class SettingsManager : MonoBehaviour
 
 
         Screen.fullScreen = fullscreen;
-
-        Resolution[] resolutions = Screen.resolutions;
-        if (resolutionIndex >= 0 && resolutionIndex < resolutions.Length)
-        {
-            Resolution res = resolutions[resolutionIndex];
-            Screen.SetResolution(res.width, res.height, fullscreen);
-        }
 
         if(GameManager.Instance != null)
         {

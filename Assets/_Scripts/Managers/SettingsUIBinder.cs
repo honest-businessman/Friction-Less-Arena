@@ -1,15 +1,15 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;  // ← New: For scene events
+using UnityEngine.SceneManagement;  
 using FMODUnity;
 using FMOD.Studio;
 
 public class SettingsUIBinder : MonoBehaviour
 {
     private const string MASTER_BUS_PATH = "bus:/";
-    private const string MUSIC_BUS_PATH = "bus:/Music";  // ← Updated to match your screenshot (full path)
-    private const string SFX_BUS_PATH = "bus:/SFX";    // ← Same here
+    private const string MUSIC_BUS_PATH = "bus:/Music";  
+    private const string SFX_BUS_PATH = "bus:/SFX";    
 
     [Header("Audio Sliders (0–1 range!)")]
     [SerializeField] private Slider masterSlider;
@@ -18,7 +18,6 @@ public class SettingsUIBinder : MonoBehaviour
 
     [Header("Display")]
     [SerializeField] private Toggle fullscreenToggle;
-    [SerializeField] private TMP_Dropdown resolutionDropdown;
 
     [Header("Gameplay")]
     [SerializeField] private Toggle trainModeToggle;
@@ -35,7 +34,7 @@ public class SettingsUIBinder : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(gameObject);  // ← Critical: Persists across additive/multi-scene loads
+        DontDestroyOnLoad(gameObject); 
 
         ConfigureSlider(masterSlider);
         ConfigureSlider(musicSlider);
@@ -44,7 +43,6 @@ public class SettingsUIBinder : MonoBehaviour
 
     private void OnEnable()
     {
-        // ← New: Reapply volumes every time this object activates (e.g., scene load)
         ApplyAudioVolumes();
     }
 
@@ -69,8 +67,6 @@ public class SettingsUIBinder : MonoBehaviour
         // Clean up scene hook
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
-    // ← New: Called every time a scene loads (ensures volumes apply to new audio)
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Small delay to let FMOD events start, then reapply
@@ -102,24 +98,6 @@ public class SettingsUIBinder : MonoBehaviour
         if (fullscreenToggle) fullscreenToggle.isOn = sm.fullscreen;
         if (trainModeToggle) trainModeToggle.isOn = sm.trainMode;
         if (reduceShakeToggle) reduceShakeToggle.isOn = sm.reduceShake;
-
-        if (resolutionDropdown)
-        {
-            resolutionDropdown.ClearOptions();
-            var options = new System.Collections.Generic.List<string>();
-            var resolutions = Screen.resolutions;
-            foreach (var res in resolutions)
-                options.Add($"{res.width} x {res.height}");
-
-            resolutionDropdown.AddOptions(options);
-
-            int currentIdx = System.Array.FindIndex(resolutions,
-                r => r.width == Screen.currentResolution.width &&
-                     r.height == Screen.currentResolution.height);
-
-            resolutionDropdown.value = currentIdx >= 0 ? currentIdx : sm.resolutionIndex;
-            resolutionDropdown.RefreshShownValue();
-        }
     }
 
     private void BindListeners(SettingsManager sm)
@@ -129,7 +107,6 @@ public class SettingsUIBinder : MonoBehaviour
         if (sfxSlider) sfxSlider.onValueChanged.AddListener(v => { sm.sfxVolume = v; ApplyAudioVolumes(); });
 
         if (fullscreenToggle) fullscreenToggle.onValueChanged.AddListener(v => { sm.fullscreen = v; ApplyNonAudioSettings(); });
-        if (resolutionDropdown) resolutionDropdown.onValueChanged.AddListener(i => { sm.resolutionIndex = i; ApplyNonAudioSettings(); });
         if (trainModeToggle) trainModeToggle.onValueChanged.AddListener(v => { sm.trainMode = v; ApplyNonAudioSettings(); });
         if (reduceShakeToggle) reduceShakeToggle.onValueChanged.AddListener(v => { sm.reduceShake = v; ApplyNonAudioSettings(); });
     }
@@ -145,7 +122,7 @@ public class SettingsUIBinder : MonoBehaviour
         RuntimeManager.GetBus(MUSIC_BUS_PATH).setVolume(sm.musicVolume);
         RuntimeManager.GetBus(SFX_BUS_PATH).setVolume(sm.sfxVolume);
 
-        Debug.Log($"🔊 Volumes applied: Master={sm.masterVolume}, Music={sm.musicVolume}, SFX={sm.sfxVolume}");  // ← Debug: Watch console
+        Debug.Log($"🔊 Volumes applied: Master={sm.masterVolume}, Music={sm.musicVolume}, SFX={sm.sfxVolume}");  
     }
 
     private void ApplyNonAudioSettings()
