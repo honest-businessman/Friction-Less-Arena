@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Increases the Frictionless Drive charge speed.
   upgradeType: 5
   rarity: 1
-  value: 1.2
+  value: 1.3
   valueScaling: 2

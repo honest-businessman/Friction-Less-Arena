@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public GameObject settingsPanel;
     public GameObject pausePanel;
     public GameObject upgradePanel;
+    public GameObject infoPanel;
 
     private UpgradeUI upgradeUI;
     private PauseUI pauseUI;
@@ -28,7 +29,8 @@ public class UIManager : MonoBehaviour
         MainMenu,
         Settings,
         Pause,
-        Upgrades
+        Upgrades,
+        Info
     }
 
     private void Awake()
@@ -152,6 +154,13 @@ public class UIManager : MonoBehaviour
         isSettingsOpen = true;
         currentFocus = UIFocus.Settings;
     }
+    public void ShowInfoMenu()
+    {
+        HideAll();
+        infoPanel.SetActive(true);
+        isSettingsOpen = false;
+        currentFocus = UIFocus.Info;
+    }
     public void ShowPauseMenu()
     {
         HideAll();
@@ -163,6 +172,7 @@ public class UIManager : MonoBehaviour
     {
         mainMenuPanel?.SetActive(false);
         settingsPanel?.SetActive(false);
+        infoPanel?.SetActive(false);
         pausePanel?.SetActive(false);
         isSettingsOpen = false;
         currentFocus = UIFocus.None;

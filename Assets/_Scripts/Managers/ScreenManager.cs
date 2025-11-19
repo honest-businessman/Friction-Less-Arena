@@ -45,7 +45,8 @@ public class ScreenManager : MonoBehaviour
     {
         Menu,
         Game2D,
-        Settings
+        Settings,
+        Info
     }
 
     private GameObject screenObj;
@@ -115,6 +116,13 @@ public class ScreenManager : MonoBehaviour
             screenMeshRenderer.sharedMaterial = settingsMaterial;
             lastScreen = ScreenType.Settings;
         }
+        else if (screenType == ScreenType.Info)
+        {
+            if (lastScreen == ScreenType.Menu) { StopOSAnimation(); }
+            UIManager.Instance.ShowInfoMenu();
+            screenMeshRenderer.sharedMaterial = settingsMaterial;
+            lastScreen = ScreenType.Info;
+        }
     }
     private void StartOSAnimation()
     {
@@ -176,6 +184,22 @@ public class ScreenManager : MonoBehaviour
         }
         
         Debug.Log("Opening Settings");
+    }
+    public void InfoPressed()
+    {
+        if (inputLocked) return;
+        if (UIManager.Instance.currentFocus == UIManager.UIFocus.Info)
+        {
+            SetScreen(ScreenType.Menu);
+            MenuEvents.OnSettingsClosed?.Invoke();
+        }
+        else
+        {
+            SetScreen(ScreenType.Info);
+            MenuEvents.OnSettingsOpened?.Invoke();
+        }
+
+        Debug.Log("Opening Info");
     }
 
     public void HandleNavigate(Vector2 direction)

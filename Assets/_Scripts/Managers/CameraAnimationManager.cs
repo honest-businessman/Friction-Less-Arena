@@ -112,6 +112,8 @@ public class CameraAnimationManager : MonoBehaviour
     public void TransitionToMainMenu()
     {
         gameCam.Priority = 0;
+        settingCam.Priority = 10;
+        menuCam.Priority = 20;
     }
     private void HandleSettingsOpened()
     {

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8296993237369149266}
   - component: {fileID: 3660623853078117944}
+  - component: {fileID: 2609055166060168345}
   m_Layer: 0
   m_Name: ScreenManager
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   gameSceneName: FrictionLess
   colorButton: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 0}
   colorButtonActive: {r: 0.8207547, g: 0, b: 0.08259161, a: 0}
@@ -59,7 +61,34 @@ MonoBehaviour:
       m_Calls: []
   osAnimationMaterial: {fileID: 2100000, guid: 817f4f7036a93cf42bc665d12b39f366, type: 2}
   game2DMaterial: {fileID: 2100000, guid: 3ebc16014573c1e468eeb1d1a1a3400f, type: 2}
-  settingsMaterial: {fileID: 2100000, guid: 505df688bd4261b4386b711db520ef7d, type: 2}
+  settingsMaterial: {fileID: 2100000, guid: 3ebc16014573c1e468eeb1d1a1a3400f, type: 2}
   titleTexts:
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &2609055166060168345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310180957871698885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7060d84fbc9bf684994f354b90fb51a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuMusic:
+    Guid:
+      Data1: 2012481963
+      Data2: 1187754470
+      Data3: -673129542
+      Data4: -1890948042
+    Path: event:/Main menu music
+  GameMusic:
+    Guid:
+      Data1: 931133800
+      Data2: 1208066204
+      Data3: -1190686808
+      Data4: 1969691072
+    Path: event:/Battle music
+  fadeDuration: 1

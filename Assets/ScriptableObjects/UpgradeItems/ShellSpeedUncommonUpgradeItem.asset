@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Slightly increases the turret's shell speed.
   upgradeType: 1
   rarity: 0
-  value: 1.1
+  value: 1.2
   valueScaling: 2

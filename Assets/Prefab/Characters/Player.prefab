@@ -521,6 +521,7 @@ GameObject:
   - component: {fileID: 6789567841721172622}
   - component: {fileID: 7359771406497599112}
   - component: {fileID: 3981763763968397395}
+  - component: {fileID: 7086006397169222451}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -698,18 +699,18 @@ MonoBehaviour:
       m_Calls: []
   DamageEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1329220135
+      Data2: 1302257472
+      Data3: -2092356450
+      Data4: 591114845
+    Path: event:/TankHit
   PlayerDeathEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -419666244
+      Data2: 1292553975
+      Data3: -760632941
+      Data4: -74563579
+    Path: event:/ExplosionDeath
   EnemyDeathEvent:
     Guid:
       Data1: 0
@@ -717,6 +718,13 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  RegenHealthEvent:
+    Guid:
+      Data1: -1608439122
+      Data2: 1103378233
+      Data3: -538957903
+      Data4: -760567812
+    Path: event:/HealthRegen
   DeathVFX: {fileID: 6429035345946287399, guid: 33394f4719a322f4d8df3d2418a7ae6a, type: 3}
   xpContainer: {fileID: 0}
   dropXP: 0
@@ -756,7 +764,28 @@ MonoBehaviour:
   chargeAngle: 30
   minChargeMoveSpeed: 3
   driftAudio: {fileID: 7359771406497599112}
-  shotAudio: {fileID: 0}
+  shotAudio: {fileID: 7086006397169222451}
+  fullDriveLoopEvent:
+    Guid:
+      Data1: -1497149305
+      Data2: 1215672595
+      Data3: 104841886
+      Data4: -1039128916
+    Path: event:/BatteryCharge
+  driftLoopEvent:
+    Guid:
+      Data1: 838199813
+      Data2: 1318104827
+      Data3: -1115378279
+      Data4: -1422495259
+    Path: event:/TankDrifting
+  xpPickupEvent:
+    Guid:
+      Data1: -218878420
+      Data2: 1316312775
+      Data3: -31906409
+      Data4: -182105711
+    Path: event:/XP
   trackRightAnimator: {fileID: 0}
   trackLeftAnimator: {fileID: 0}
   trailLeft: {fileID: 4768731536022952363}
@@ -815,8 +844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8172d0a1f6d3b741a5c14a2770e638c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intialXpToLevelUp: 1
-  xpCostScaling: 1
+  intialXpToLevelUp: 12
+  xpCostScaling: 1.15
   currentXP: 0
   currentXpToLevelUp: 0
   level: 1
@@ -895,6 +924,25 @@ MonoBehaviour:
       Data3: 1309568129
       Data4: -906855665
     Path: event:/ChargedShot
+--- !u!114 &7086006397169222451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213092101655995850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d041bd7ce9c554f9c17832d15d42ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankShotEvent:
+    Guid:
+      Data1: 2134504257
+      Data2: 1311381729
+      Data3: -82169414
+      Data4: 1056713124
+    Path: event:/TankShot1
 --- !u!1 &1271005985674533720
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Greatly increase tank move speed.
   upgradeType: 4
   rarity: 1
-  value: 1.1
+  value: 1.25
   valueScaling: 2

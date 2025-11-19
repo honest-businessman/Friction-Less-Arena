@@ -131,78 +131,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2489226470317238442, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: chargeStartDelay
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: shotAudio
-      value: 
-      objectReference: {fileID: 199498344}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: xpPickupEvent.Path
-      value: event:/XP
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: driftLoopEvent.Path
-      value: event:/TankDrifting
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: fullDriveLoopEvent.Path
-      value: event:/BatteryCharge
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: xpPickupEvent.Guid.Data1
-      value: -218878420
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: xpPickupEvent.Guid.Data2
-      value: 1316312775
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: xpPickupEvent.Guid.Data3
-      value: -31906409
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: xpPickupEvent.Guid.Data4
-      value: -182105711
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: driftLoopEvent.Guid.Data1
-      value: 838199813
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: driftLoopEvent.Guid.Data2
-      value: 1318104827
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: driftLoopEvent.Guid.Data3
-      value: -1115378279
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: driftLoopEvent.Guid.Data4
-      value: -1422495259
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: fullDriveLoopEvent.Guid.Data1
-      value: -1497149305
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: fullDriveLoopEvent.Guid.Data2
-      value: 1215672595
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: fullDriveLoopEvent.Guid.Data3
-      value: 104841886
-      objectReference: {fileID: 0}
-    - target: {fileID: 2531162805804896880, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: fullDriveLoopEvent.Guid.Data4
-      value: -1039128916
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: DeathEvent.Path
-      value: event:/ExplosionDeath
-      objectReference: {fileID: 0}
     - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
       propertyPath: targetRenderer1
       value: 
@@ -219,102 +147,6 @@ PrefabInstance:
       propertyPath: targetRenderer4
       value: 
       objectReference: {fileID: 596579548}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: DamageEvent.Path
-      value: event:/TankHit
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: EnemyDeathEvent.Path
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: DeathEvent.Guid.Data1
-      value: -419666244
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: DeathEvent.Guid.Data2
-      value: 1292553975
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: DeathEvent.Guid.Data3
-      value: -760632941
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: DeathEvent.Guid.Data4
-      value: -74563579
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: PlayerDeathEvent.Path
-      value: event:/ExplosionDeath
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: RegenHealthEvent.Path
-      value: event:/HealthRegen
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: DamageEvent.Guid.Data1
-      value: -1329220135
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: DamageEvent.Guid.Data2
-      value: 1302257472
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: DamageEvent.Guid.Data3
-      value: -2092356450
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: DamageEvent.Guid.Data4
-      value: 591114845
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: EnemyDeathEvent.Guid.Data1
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: EnemyDeathEvent.Guid.Data2
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: EnemyDeathEvent.Guid.Data3
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: EnemyDeathEvent.Guid.Data4
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: PlayerDeathEvent.Guid.Data1
-      value: -419666244
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: PlayerDeathEvent.Guid.Data2
-      value: 1292553975
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: PlayerDeathEvent.Guid.Data3
-      value: -760632941
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: PlayerDeathEvent.Guid.Data4
-      value: -74563579
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: RegenHealthEvent.Guid.Data1
-      value: -1608439122
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: RegenHealthEvent.Guid.Data2
-      value: 1103378233
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: RegenHealthEvent.Guid.Data3
-      value: -538957903
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727038939701339567, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: RegenHealthEvent.Guid.Data4
-      value: -760567812
-      objectReference: {fileID: 0}
     - target: {fileID: 2759497254178083693, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.012871504
@@ -355,47 +187,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7007301603030296698, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: xpCostScaling
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7007301603030296698, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      propertyPath: intialXpToLevelUp
-      value: 12
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8489104909565751887, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 213092101655995850, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 199498344}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
---- !u!1 &199498343 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 213092101655995850, guid: aa2f1057ba7e6374e9bb0998f1dc069a, type: 3}
-  m_PrefabInstance: {fileID: 199498342}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &199498344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199498343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4d041bd7ce9c554f9c17832d15d42ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tankShotEvent:
-    Guid:
-      Data1: 2134504257
-      Data2: 1311381729
-      Data3: -82169414
-      Data4: 1056713124
-    Path: event:/TankShot1
 --- !u!212 &304764263 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5206092232246172004, guid: 2522624f2dbfba145acc80763068e540, type: 3}
@@ -573,7 +369,7 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 1634058560872992135, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
   m_PrefabInstance: {fileID: 3090318916966835265}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &1232049359
+--- !u!84 &1046246549
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -668,24 +464,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6639531242893424269, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
-      propertyPath: waveStartSFX.Path
-      value: event:/NextWave
-      objectReference: {fileID: 0}
-    - target: {fileID: 6639531242893424269, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
-      propertyPath: waveStartSFX.Guid.Data1
-      value: 1296804786
-      objectReference: {fileID: 0}
-    - target: {fileID: 6639531242893424269, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
-      propertyPath: waveStartSFX.Guid.Data2
-      value: 1218951432
-      objectReference: {fileID: 0}
-    - target: {fileID: 6639531242893424269, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
-      propertyPath: waveStartSFX.Guid.Data3
-      value: 500002179
-      objectReference: {fileID: 0}
-    - target: {fileID: 6639531242893424269, guid: 99db90e40437b6e4a9649d3a94fe2c97, type: 3}
-      propertyPath: waveStartSFX.Guid.Data4
-      value: 1893942859
+      propertyPath: enemies.Array.data[0].cost
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -955,7 +735,7 @@ PrefabInstance:
     - target: {fileID: 1634058560872992135, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1232049359}
+      objectReference: {fileID: 1046246549}
     - target: {fileID: 2913776580617316615, guid: 945b035385abbbd41a8efad22efefdc3, type: 3}
       propertyPath: m_Name
       value: Game2DCamera

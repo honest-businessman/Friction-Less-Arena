@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Additional Charged Shot turret effect
   upgradeType: 3
   rarity: 2
-  value: 1
+  value: 2
   valueScaling: 2

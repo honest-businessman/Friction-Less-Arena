@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Increases firerate of normal shots.
   upgradeType: 0
   rarity: 0
-  value: 1.1
+  value: 1.2
   valueScaling: 2
