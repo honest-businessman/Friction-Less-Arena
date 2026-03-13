@@ -21,6 +21,7 @@ Designed to test our teams ability to create an engaging game with striking visu
 - Roguelike upgrades
 - Neon / Vaporwave Artstyle
 - 2D Reflections
+- In-House soundtrack
 
 ### Note
 - Windows support only
@@ -30,6 +31,7 @@ Designed to test our teams ability to create an engaging game with striking visu
 
 
 ## Trailer:   
+Note: Trailer was made prior to major graphical updates. See Screenshots for up to date visuals (ex. Upgrades)  
 [![Friction-Less: Arena Trailer](https://img.youtube.com/vi/VzVJ19xjnrA/0.jpg)](https://www.youtube.com/watch?v=VzVJ19xjnrA)
 
 ## Screenshots
