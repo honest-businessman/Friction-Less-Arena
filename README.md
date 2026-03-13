@@ -1,11 +1,11 @@
 # Friction-Less: Arena 
+
+Friction-Less: Arena is a 2D Roguelike, arcade, tank arena shooter developed through the Unity Game Engine.
+Designed to test our teams ability to create an engaging game with striking visuals.  
 Formally 'Friction-Less'  
 
 4 Month, Second Year Bachelor of IT, Game Development Project.
 Development ended at project due date of Nov 20, 2025.
-
-Friction-Less Arena is a 2D Roguelike, arcade, tank arena shooter developed through the Unity Game Engine.
-Designed to test our teams ability to create an engaging game with striking visuals.
 
 
 ## Features
