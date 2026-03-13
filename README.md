@@ -21,7 +21,8 @@ Designed to test our teams ability to create an engaging game with striking visu
 - Roguelike upgrades
 - Neon / Vaporwave Artstyle
 - 2D Reflections
-- In-House soundtrack
+- In-House soundtrack ([FrictionLessArena_Menu.mp3](https://github.com/user-attachments/files/25958413/FrictionLessArena_Menu.mp3), [FirctionLessArena_GameTrack.mp3](https://github.com/user-attachments/files/25958427/FirctionLessArena_GameTrack.mp3))
+
 
 ### Note
 - Windows support only
@@ -31,7 +32,8 @@ Designed to test our teams ability to create an engaging game with striking visu
 
 
 ## Trailer:   
-Note: Trailer was made prior to major graphical updates. See Screenshots for up to date visuals (ex. Upgrades)  
+Note: Trailer was made prior to major graphical and soundtrack updates. See Screenshots for up to date visuals (ex. Upgrades)  
+Trailer features third-party copyrighted music. See soundtrack above for in-game music. 
 [![Friction-Less: Arena Trailer](https://img.youtube.com/vi/VzVJ19xjnrA/0.jpg)](https://www.youtube.com/watch?v=VzVJ19xjnrA)
 
 ## Screenshots
@@ -44,4 +46,5 @@ Note: Trailer was made prior to major graphical updates. See Screenshots for up 
 <img width="252" height="340" alt="image" src="https://github.com/user-attachments/assets/ab35f8eb-a050-4a38-af3d-fb5b6f7ff280" />
 <img width="250" height="368" alt="image" src="https://github.com/user-attachments/assets/43db380e-1b69-4ce9-88de-589c349fea2c" />
 <img width="2047" height="1151" alt="image" src="https://github.com/user-attachments/assets/5797ed15-3709-4393-8af4-b35f50dff527" />
+
 
