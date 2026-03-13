@@ -22,9 +22,11 @@ Designed to test our teams ability to create an engaging game with striking visu
 - Neon / Vaporwave Artstyle
 - 2D Reflections
 
-Windows support only.
-Controller support only.
-Settings menu requires mouse navigation.
+### Note
+- Windows support only
+- Controller support only
+- Settings menu requires mouse navigation
+- Expect Bugs
 
 
 ## Trailer:   
